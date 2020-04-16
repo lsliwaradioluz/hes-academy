@@ -13,6 +13,9 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ], 
+    script: [
+      { src: 'https://js.stripe.com/v3' }
     ]
   },
   /*
@@ -23,11 +26,13 @@ export default {
   ** Global CSS
   */
   css: [
+    './assets/styles/general.css',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    './plugins/components.js',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -39,6 +44,7 @@ export default {
   */
   modules: [
     '@nuxtjs/apollo',
+    '@nuxtjs/axios',
   ],
   apollo: {  
     clientConfigs: {

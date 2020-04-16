@@ -1,0 +1,9 @@
+mutation($input: createOrderInput) {
+  createOrder(input: $input) {
+    order {
+      id
+      amount
+      products
+    }
+  }
+}

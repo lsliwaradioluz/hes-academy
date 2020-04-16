@@ -1,6 +1,11 @@
 query {
   programs {
     id
-    name
+    nazwa
+    cena
+    opis
+    foto {
+      url
+    }
   }
 }
