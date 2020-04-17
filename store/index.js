@@ -4,16 +4,16 @@ export const actions = {
   nuxtServerInit({ commit }, { req }) {
     let user = null;
     let cart = [];
-    // let cartBackup = null;
+    let cartBackup = [];
     if (req && req.headers && req.headers.cookie) {
       const parsed = cookieparser.parse(req.headers.cookie);
       user = (parsed.user && JSON.parse(parsed.user)) || null;
       cart = (parsed.cart && JSON.parse(parsed.cart)) || [];
-      // cartBackup = (parsed.cartBackup && JSON.parse(parsed.cartBackup)) || null;
+      cartBackup = (parsed.cartBackup && JSON.parse(parsed.cartBackup)) || [];
     }
     
     commit('auth/setUser', user);
     commit('cart/setItems', cart);
-    // commit('cart/setCartBackup', cartBackup);
+    commit('cart/setCartBackup', cartBackup);
   }
 }
