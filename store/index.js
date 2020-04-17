@@ -6,6 +6,7 @@ export const state = () => ({
 
 export const mutations = {
   setDupa(state, payload) {
+    console.log('dupa was set');
     state.dupa = payload;
   }
 }
