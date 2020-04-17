@@ -38,13 +38,13 @@ export const getters = {
   items: state => {
     return state.items
   },
-  // price: state => {
-  //   const price = state.items.reduce((accumulator, item) => {
-  //     return accumulator + item.cena
-  //   });
+  price: state => {
+    const price = state.items.reduce((accumulator, item) => {
+      return accumulator + item.cena
+    });
 
-  //   return state.items.length > 1 ? price : state.items[0].cena;
-  // },
+    return state.items.length > 1 ? price : state.items[0].cena;
+  },
 }
 
 // export const state = () => ({  
