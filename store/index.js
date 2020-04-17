@@ -1,8 +1,18 @@
 import cookieparser from 'cookieparser';
 
+export const state = () => ({
+  dupa: null
+});
+
+export const mutations = {
+  setDupa(state, payload) {
+    state.dupa = payload;
+  }
+}
+
 export const actions = {  
   nuxtServerInit({ commit }, { req }) {
-    console.log('NuxtServerInit');
+    commit('setDupa', 'zbita');
     // let user = null;
     // let cart = null;
     // let cartBackup = null;
