@@ -4,7 +4,7 @@
     <div class="program-content">
       <h2>{{ program.nazwa }}</h2>
       <p>{{ program.opis }}</p>
-      <nuxt-link :to="program.id" v-if="lessonIndex == null" append>Wejdź</nuxt-link>
+      <nuxt-link :to="`/programs/${program.id}`" v-if="lessonIndex == null">Wejdź</nuxt-link>
       <nuxt-link :to="{ query: { lesson: lessonIndex }}" v-else append>Zobacz</nuxt-link>
     </div>
   </div>
@@ -31,6 +31,7 @@
     flex-grow: 0;
     border: 1px solid black;
     border-radius: 6px;
+    overflow: hidden;
   }
 
   .program-image {
@@ -42,6 +43,10 @@
 
   .program-content {
     padding: 1rem;
+  }
+
+  .program-content h2 {
+    margin-top: 0;
   }
 
   .program-content a {

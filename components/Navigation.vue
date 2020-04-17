@@ -11,7 +11,7 @@
     <div class="status">  
       <template v-if="!user">
         <nuxt-link to="/login">Logowanie</nuxt-link>
-        <nuxt-link to="/register">rejestracja</nuxt-link>
+        <nuxt-link to="/register">Rejestracja</nuxt-link>
       </template>
       <nuxt-link to="/login" @click.native="logout" v-else>Wyloguj {{ user.username }}</nuxt-link>
     </div>
@@ -54,7 +54,7 @@ export default {
     align-items: center;
   }
 
-  .links a {
+  a {
     padding: .5rem;
   }
 

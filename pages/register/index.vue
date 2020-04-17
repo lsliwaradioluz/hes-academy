@@ -2,32 +2,30 @@
   <div class="register-page">
     <h1>Zarejestruj się</h1>
     <form @submit.prevent>
-      <fieldset>
-        <input 
-          v-model="user.username" 
-          placeholder="Imię i nazwisko"
-          type="text"
-          :spellcheck="false"
-          autocomplete="on">
-        <input 
-          v-model="user.email" 
-          placeholder="Adres e-mail"
-          type="email"
-          :spellcheck="false"
-          autocomplete="on">
-        <input 
-          v-model="user.password" 
-          placeholder="Hasło"
-          type="password"
-          :spellcheck="false"
-          autocomplete="on">
-        <input
-          v-model="user.repeatPassword" 
-          placeholder="Powtórz hasło"
-          type="password"
-          :spellcheck="false"
-          autocomplete="on">
-      </fieldset>
+      <input 
+        v-model="user.username" 
+        placeholder="Imię i nazwisko"
+        type="text"
+        :spellcheck="false"
+        autocomplete="on">
+      <input 
+        v-model="user.email" 
+        placeholder="Adres e-mail"
+        type="email"
+        :spellcheck="false"
+        autocomplete="on">
+      <input 
+        v-model="user.password" 
+        placeholder="Hasło"
+        type="password"
+        :spellcheck="false"
+        autocomplete="on">
+      <input
+        v-model="user.repeatPassword" 
+        placeholder="Powtórz hasło"
+        type="password"
+        :spellcheck="false"
+        autocomplete="on">
       <button @click.prevent="register" type="button">Załóż konto</button>
       <p>{{ error }}</p>
       <div>
@@ -61,22 +59,15 @@
           return
         }
         
-        const endpoint = process.env.NODE_ENV == 'development' ? 'http://localhost:1337/auth/local/register' : 'https://piti-backend.herokuapp.com/auth/local/register';
+        const endpoint = process.env.NODE_ENV == 'development' ? 'http://localhost:1337/auth/local/register' : 'https://hesacademy-backend.herokuapp.com/auth/local/register';
         this.$axios.$post(endpoint, {
           username: this.user.username,
           email: this.user.email, 
           password: this.user.password,
         })
           .then(res => {
-            let user = {
-              id: res.user.id,
-              username: res.user.username, 
-              email: res.user.email, 
-            }
-
             this.$apolloHelpers.onLogin(res.jwt, undefined, { expires: 7 })
-
-            this.login(user);
+            this.setUser(res.user);
             this.$router.push({
               path: '/user'
             });
@@ -92,6 +83,14 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
+  input {
+    margin-bottom: .5rem;
+  }
 </style>

@@ -2,6 +2,7 @@ import cookieparser from 'cookieparser';
 
 export const actions = {  
   nuxtServerInit({ commit }, { req }) {
+    console.log('NuxtServerInit');
     // let user = null;
     // let cart = null;
     // let cartBackup = null;
@@ -15,6 +16,5 @@ export const actions = {
     // commit('auth/setUser', user);
     // commit('cart/setItems', cart);
     // commit('cart/setCartBackup', cartBackup);
-    console.log('nuxt-server-init');
   }
 }

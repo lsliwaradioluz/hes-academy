@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 export default {
   mode: 'universal',
@@ -17,6 +18,9 @@ export default {
     script: [
       { src: 'https://js.stripe.com/v3' }
     ]
+  },
+  env: {
+    STRIPE_KEY: process.env.STRIPE_KEY,
   },
   /*
   ** Customize the progress-bar color
@@ -38,6 +42,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/dotenv',
   ],
   /*
   ** Nuxt.js modules

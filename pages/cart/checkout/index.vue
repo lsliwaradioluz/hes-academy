@@ -14,7 +14,7 @@
           <label for="card">Karta</label>
             <card
               ref="card-stripe"
-              stripe="pk_test_jYju3Mj3yURNRSVWvnlmbgbe00r0NdsAIg"
+              :stripe="stripeKey"
               @change='complete = $event.complete'
             />
         </div>
@@ -38,6 +38,7 @@
         client: this.$apollo.getClient(),
         complete: false,
         loading: false,
+        stripeKey: process.env.STRIPE_KEY,
       }
     },
     computed: {
@@ -45,7 +46,7 @@
         items: 'cart/items',
         price: 'cart/price',
         user: 'auth/user',
-      })
+      }),
     },
     methods: {
       ...mapMutations({
@@ -83,10 +84,10 @@
           this.$router.push('/user');
         } catch (err) {
           this.loading = false
-          alert('An error occurred.')
+          console.log(err);
         }
       }
-    }
+    },
   }
 </script>
 
