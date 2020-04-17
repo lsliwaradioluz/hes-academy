@@ -3,6 +3,10 @@
     <h1>Moje konto</h1>
     <p>Nazwa użytkownika: {{ user.username }}</p>
     <p>Email: {{ user.email }}</p>
+    <h1>Moje programy</h1>
+    <div class="programs">
+      <Program v-for="program in programs" :program="program" :key="program.id" />
+    </div>
   </div>
 </template>
 
@@ -11,6 +15,9 @@
     computed: {
       user() {
         return this.$store.getters['auth/user'];
+      },
+      programs() {
+        return this.$store.getters['auth/programs'];
       }
     },
   }
@@ -24,5 +31,9 @@
     padding: 1rem;
     display: inline-block;
     border-radius: 6px;
+  }
+
+  .programs {
+    display: flex; 
   }
 </style>
