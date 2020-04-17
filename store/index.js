@@ -28,3 +28,9 @@ export const actions = {
     // commit('cart/setCartBackup', cartBackup);
   }
 }
+
+export const getters = {
+  dupa(state) {
+    return state.dupa;
+  }
+}
