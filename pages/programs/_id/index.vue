@@ -4,7 +4,7 @@
     <template v-if="!isItemPurchased">
       <nuxt-link tag="button" type="button" to="/cart" v-if="isItemInCart">Przejdź do koszyka</nuxt-link>
       <template v-else>
-        <button type="button" @click="addItem(program)">Dodaj do koszyka</button>
+        <button type="button" @click="addItem(program)" v-if="user">Dodaj do koszyka</button>
         <nuxt-link tag="button" type="button" to="/cart/checkout" @click.native="buyProgram">Kup teraz</nuxt-link>
       </template>
     </template>
@@ -52,6 +52,7 @@ export default {
     ...mapGetters({
       items: 'cart/items', 
       programs: 'auth/programs',
+      user: 'auth/user',
     })
   },
   methods: {
@@ -60,8 +61,10 @@ export default {
       addItem: 'cart/addItem'
     }),
     buyProgram() {
-      this.emptyCart();
-      this.addItem(this.program);
+      if (this.user) {
+        this.emptyCart();
+        this.addItem(this.program);
+      }
     }
   }
 }

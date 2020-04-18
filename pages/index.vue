@@ -1,17 +1,12 @@
 <template>
   <div>
-    {{ dupa }}
+    Witaj w HES Academy
   </div>
 </template>
 
 <script>
 
   export default {
-    computed: {
-      dupa() {
-        return this.$store.getters['dupa'];
-      }
-    }
   }
 </script>
 

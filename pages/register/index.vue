@@ -52,6 +52,11 @@
         error: ''
       }
     },
+    computed: {
+      redirect() {
+        return this.$route.query.to;
+      }
+    },
     methods: {
       register() {
         if (this.user.password != this.user.repeatPassword) {
@@ -66,11 +71,9 @@
           password: this.user.password,
         })
           .then(res => {
-            this.$apolloHelpers.onLogin(res.jwt, undefined, { expires: 7 })
+            this.$apolloHelpers.onLogin(res.jwt, undefined, { expires: 7 });
             this.setUser(res.user);
-            this.$router.push({
-              path: '/user'
-            });
+            this.$router.go(this.redirect ? this.redirect : '/user');
           })
           .catch(err => {
             this.error = 'Nie można zarejestrować';

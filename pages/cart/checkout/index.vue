@@ -30,6 +30,7 @@
   import createOrder from '~/apollo/mutations/createOrder.gql';   
 
   export default {
+    middleware: 'redirect',
     components: {
       Card,
     },

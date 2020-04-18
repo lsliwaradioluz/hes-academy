@@ -1,0 +1,10 @@
+query getSingleArticle($id: ID!) {
+  article(id: $id) {
+    id
+    title
+    image {
+      url
+    }
+    text
+  }
+}

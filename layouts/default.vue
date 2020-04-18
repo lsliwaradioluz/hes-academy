@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 
   * {
     box-sizing: border-box;
@@ -22,7 +22,8 @@
   }
 
   .default-layout {
-    padding: 3rem 1rem;
+    padding: 5rem 1rem;
 
   }
+  
 </style>

@@ -30,19 +30,24 @@ export default {
   ** Global CSS
   */
   css: [
-    './assets/styles/general.css',
+    './assets/icons/font/flaticon.css',
+    './assets/styles/fonts.css',
+    './assets/styles/main.scss',
+    './assets/styles/layout.scss',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     './plugins/components.js',
+    './plugins/filters.js',
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
     '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources',
   ],
   /*
   ** Nuxt.js modules
@@ -50,6 +55,7 @@ export default {
   modules: [
     '@nuxtjs/apollo',
     '@nuxtjs/axios',
+    '@nuxtjs/markdownit',
   ],
   apollo: {  
     clientConfigs: {
@@ -57,6 +63,19 @@ export default {
         httpEndpoint: process.env.NODE_ENV == 'development' ? 'http://localhost:1337/graphql' : 'https://hesacademy-backend.herokuapp.com/graphql',
       }
     }
+  },
+  markdownit: {
+    preset: 'default',
+    html: true,
+    linkify: true,
+    breaks: true,
+    injected: true, 
+    typographer: true
+  },
+  styleResources: {
+    scss: [
+      '~/assets/styles/variables.scss',
+    ]
   },
   /*
   ** Build configuration

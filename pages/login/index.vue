@@ -6,7 +6,8 @@
       <input type="password" v-model="password" placeholder="Hasło" :spellcheck="false" autocomplete="on">
       <button  @click.prevent="signIn" type="button">Zaloguj</button>
       <p class="error">{{ error }}</p>
-    </form>      
+      {{ redirect }}
+    </form>    
   </div>
 </template>
 
@@ -19,7 +20,12 @@ export default {
       identifier: '',
       revealPassword: false,
       password: '',
-      error: ''
+      error: '', 
+    }
+  },
+  computed: {
+    redirect() {
+      return this.$route.query.to;
     }
   },
   methods: {
@@ -32,9 +38,7 @@ export default {
         .then(res => {
           this.$apolloHelpers.onLogin(res.jwt, undefined, { expires: 7 })
           this.setUser(res.user);
-          this.$router.push({
-            path: '/'
-          });
+          this.$router.go(this.redirect ? this.redirect : '/user');
         })
         .catch(err => {
           this.error = 'Nieprawidłowy login lub hasło';
@@ -42,9 +46,8 @@ export default {
     },
     ...mapMutations({
       setUser: 'auth/setUser',
-      logout: 'auth/logout',
     }),
-  }
+  },
 }
 </script>
 

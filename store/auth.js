@@ -17,7 +17,7 @@ export const mutations = {
   pushOrder(state, order) {
     state.user.orders.push(order);
     Cookies.set('user', state.user);
-  }
+  }, 
 }
 
 export const getters = {  
@@ -26,9 +26,11 @@ export const getters = {
   }, 
   programs: state => {
     const programs = [];
-    state.user.orders.forEach(order => {
-      programs.push(...order.products);
-    });
+    if (state.user && state.user.orders) {
+      state.user.orders.forEach(order => {
+        programs.push(...order.products);
+      });
+    }
     return programs;
-  }
+  }, 
 }

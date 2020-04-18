@@ -25,7 +25,7 @@
       ...mapMutations({
         removeItem: 'cart/removeItem'
       })
-    }
+    },
   }
 </script>
 

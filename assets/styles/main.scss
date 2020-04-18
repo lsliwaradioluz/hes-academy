@@ -1,0 +1,99 @@
+// text colors
+
+@mixin color-modifiers {
+  @each $name, $hex in $colors {
+    &-#{$name} {
+      color: $hex !important;
+    }
+  }
+}
+
+.t {
+  @include color-modifiers;
+}
+
+// background colors
+
+@mixin background-color-modifiers {
+  @each $name, $hex in $colors {
+    &-#{$name} {
+      background-color: $hex !important;
+    }
+  }
+}
+
+.b {
+  @include background-color-modifiers;
+}
+
+// font-sizes 
+
+@for $i from 1 through 100 {
+	$base: 1;
+	$fontsize: $base * $i;
+	.fs-#{$fontsize} { 
+		font-size: $fontsize + 0px;
+		}
+}
+
+@for $i from 3 through 10 {
+	$base: 1;
+	$fontweight: $base * $i;
+	.fw-#{$fontweight} { 
+		font-weight: $fontweight * 100;
+		}
+}
+
+// REGULAR STYLES 
+
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Oswald', sans-serif;
+}
+
+
+// ANIMATIONS 
+
+.fade-enter-active {
+  animation: fade-in 0.4s;
+}
+
+.fade-leave-active {
+  animation: fade-in 0.4s reverse;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-right-enter-active {
+  animation: slide-right 0.4s;
+}
+
+.slide-right-leave-active {
+  animation: slide-right 0.4s reverse;
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

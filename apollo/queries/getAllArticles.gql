@@ -1,0 +1,10 @@
+query getAllArticles {
+  articles {
+    id
+    title
+    image {
+      url
+    }
+    text
+  }
+}
