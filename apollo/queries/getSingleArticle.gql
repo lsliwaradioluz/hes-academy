@@ -2,6 +2,10 @@ query getSingleArticle($id: ID!) {
   article(id: $id) {
     id
     title
+    createdAt
+    tags {
+      name
+    }
     image {
       url
     }

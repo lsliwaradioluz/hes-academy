@@ -1,0 +1,10 @@
+query getAllClients {
+  clients {
+    id
+    name
+    opinion
+    image {
+      url
+    }
+  }
+}

@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 18/04/2020 18:27
+  	Creation date: 20/04/2020 09:28
   	*/
 
 @font-face {
@@ -31,19 +31,18 @@ margin-left: 20px;
 }
 
 .flaticon-close:before { content: "\f100"; }
-.flaticon-menu:before { content: "\f101"; }
-.flaticon-email:before { content: "\f102"; }
-.flaticon-telephone:before { content: "\f103"; }
-.flaticon-facebook:before { content: "\f104"; }
-.flaticon-placeholder:before { content: "\f105"; }
-.flaticon-cardinal-point:before { content: "\f106"; }
-.flaticon-shopping-cart:before { content: "\f107"; }
-.flaticon-heartbeat:before { content: "\f108"; }
-.flaticon-stopwatch:before { content: "\f109"; }
-.flaticon-knowledge:before { content: "\f10a"; }
-.flaticon-books:before { content: "\f10b"; }
-.flaticon-medal:before { content: "\f10c"; }
-.flaticon-pharmacy:before { content: "\f10d"; }
-.flaticon-rank:before { content: "\f10e"; }
-.flaticon-protest:before { content: "\f10f"; }
-.flaticon-gym:before { content: "\f110"; }
+.flaticon-email:before { content: "\f101"; }
+.flaticon-telephone:before { content: "\f102"; }
+.flaticon-placeholder:before { content: "\f103"; }
+.flaticon-cardinal-point:before { content: "\f104"; }
+.flaticon-shopping-cart:before { content: "\f105"; }
+.flaticon-heartbeat:before { content: "\f106"; }
+.flaticon-stopwatch:before { content: "\f107"; }
+.flaticon-knowledge:before { content: "\f108"; }
+.flaticon-mouse:before { content: "\f109"; }
+.flaticon-menu:before { content: "\f10a"; }
+.flaticon-login:before { content: "\f10b"; }
+.flaticon-book:before { content: "\f10c"; }
+.flaticon-payment-method:before { content: "\f10d"; }
+.flaticon-ebook:before { content: "\f10e"; }
+.flaticon-facebook:before { content: "\f10f"; }

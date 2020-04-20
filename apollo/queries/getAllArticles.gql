@@ -1,7 +1,11 @@
-query getAllArticles {
-  articles {
+query getAllArticles($limit: Int) {
+  articles(limit: $limit) {
     id
     title
+    createdAt
+    tags {
+      name
+    }
     image {
       url
     }

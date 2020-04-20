@@ -1,15 +1,29 @@
 <template>
-  <div class="article-page">
-    <div class="article-content">
-      <h2>{{ article.title }}</h2>
-      <div class="article-image" :style="{ backgroundImage: `url('${article.image.url}')`}"></div>
+  <div class="article-page" v-if="!$apollo.loading">
+    <Header :background-url="article.image.url">
+      <template v-slot:header>{{ article.title }}</template>
+    </Header>
+    <section class="article-page-content">
+      <p class="t-textsecondary fs-12">Dodano {{ article.createdAt | getDate }}</p>
+      <div class="article-tags row">
+        <nuxt-link 
+          class="button-primary" 
+          v-for="tag in article.tags" 
+          :key="tag.id" 
+          :to="{ path: '/articles', query: { tag: tag.name }}">{{ tag.name }}</nuxt-link>
+      </div>
       <div v-html="$md.render(article.text)"></div>
-    </div>
+      <div class="article-page-related column">
+        <h3>Przeczytaj także:</h3>
+        <ArticleThumb v-for="article in articles" :key="article.id" :article="article" />
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
   import getSingleArticle from '~/apollo/queries/getSingleArticle.gql'; 
+  import getAllArticles from '~/apollo/queries/getAllArticles.gql'; 
   
   export default {
     apollo: {
@@ -18,6 +32,14 @@
         variables() {
           return {
             id: this.$route.params.id,
+          }
+        }
+      }, 
+      articles: {
+        query: getAllArticles, 
+        variables() {
+          return {
+            limit: 3
           }
         }
       }
@@ -30,20 +52,25 @@
   }
 </script>
 
-<style scoped>
-  .article-page {
-    display: flex;
-    justify-content: center;
+<style lang="scss" scoped>
+
+  .article-tags {
+    flex-wrap: wrap;
+    a {
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 0;
+      margin-right: .5rem;
+      margin-bottom: .5rem;
+    }
   }
 
-  .article-content {
-    width: 50%;
+  .article-page-content {
+    padding: 1rem;
   }
 
-  .article-image {
-    margin-bottom: 1rem;
-    background-size: cover;
-    background-position: center; 
-    height: 40vh;
+  .article-page-related {
+    border-top: 1px solid color(textsecondary);
+    padding-top: 1rem;
   }
 </style>

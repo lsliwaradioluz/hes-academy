@@ -1,6 +1,6 @@
 <template>
-  <nav class="navigation row j-between a-center">
-    <img class="logo" :src="require('../assets/images/logo.svg')" alt="logo">
+  <nav class="navigation row j-between a-center" :class="{ 'navigation--triggered': scroll > 5 && !navigationVisible }">
+    <nuxt-link to="/" class="logo"><img :src="require('../assets/images/logo.svg')" alt="logo"></nuxt-link>
     <transition name="slide-right" mode="out-in">
       <button key="open" class="hamburger" type="button" @click="toggleNavigation" v-if="!navigationVisible"><span class="flaticon-menu"></span></button>
       <button key="close" class="hamburger" type="button" @click="toggleNavigation" v-else><span class="flaticon-close"></span></button>
@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       navigationVisible: false,
+      scroll: 0,
     }
   },
   computed: {
@@ -32,6 +33,14 @@ export default {
     }, 
     items() {
       return this.$store.getters['cart/items'];
+    }, 
+    route() {
+      return this.$route;
+    }
+  },
+  watch: {
+    route() {
+      this.navigationVisible = false;
     }
   },
   methods: {
@@ -42,25 +51,39 @@ export default {
       this.navigationVisible = !this.navigationVisible;
     }
   },
+  mounted() {
+    this.scroll = window.scrollY;
+    window.addEventListener('scroll', () => {
+      this.scroll = window.scrollY;
+    });
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 
-  nav {
+  .navigation {
     z-index: 1000;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     padding: 1rem;
+    transition: all 0.3s;
+  }
+
+  .navigation--triggered {
     background-color: color(white);
     box-shadow: 0 1px 10px 3px rgba(0,0,0,.2);
+    .logo {
+      width: 125px;
+    }
   }
 
   .logo {
     width: 150px;
     z-index: 2;
+    transition: width .3s;
   }
 
   .hamburger {
@@ -87,6 +110,7 @@ export default {
       margin-bottom: .5rem;
       letter-spacing: 2px;
       position: relative;
+      font-family: 'Oswald', sans-serif;
       &::after {
         content: "";
         letter-spacing: -1px;

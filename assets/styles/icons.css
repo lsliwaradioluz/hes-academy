@@ -1,0 +1,11 @@
+[class^="flaticon-"] {
+  font-size: 20px;
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+  font-size: inherit;
+  font-style: normal;
+  margin: 0;
+}

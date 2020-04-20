@@ -1,0 +1,10 @@
+query getAllCoaches {
+  coaches {
+    id
+    name
+    description
+    image {
+      url
+    }
+  }
+}
