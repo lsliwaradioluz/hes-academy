@@ -8,7 +8,7 @@
     padding: 0 1rem;olumn">
       <h2>Misja</h2>
       <article class="column a-center">
-        <span class="flaticon-heartbeat"></span>
+        <span class="flaticon-dumbbell"></span>
         <h3 class="header--underlined">Usprawniamy</h3>
         <p class="mt0">Usprawniamy zwykłych ludzi, oferując wszechstronny rozwój sprawności opartej na świadomości swojego ciała oraz tego, jak powinno równomiernie i prawidłowo się rozwijać</p>
       </article>
@@ -18,7 +18,7 @@
         <p class="mt0">Trenujemy sportowców, amatorów oraz zawodowców, aby rozwijali się optymalnie i wszechstronnie, niwelowali ryzyko kontuzji oraz oczywiście podnosili swój poziom sportowy</p>
       </article>
       <article class="column a-center">
-        <span class="flaticon-knowledge"></span>
+        <span class="flaticon-mind-mapping"></span>
         <h3 class="header--underlined">Edukujemy</h3>
         <p class="mt0">Edukujemy trenerów, zawodników jak również rodziców przekazując mieszankę najlepszych praktyk oferowanych przez najbardziej znane szkoły przygotowania motorycznego świata m.in EXOS, Crossfit HQ</p>
       </article>

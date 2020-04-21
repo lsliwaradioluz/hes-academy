@@ -2,19 +2,19 @@
   <nav class="navigation row j-between a-center" :class="{ 'navigation--triggered': scroll > 5 && !navigationVisible }">
     <nuxt-link to="/" class="logo"><img :src="require('../assets/images/logo.svg')" alt="logo"></nuxt-link>
     <transition name="slide-right" mode="out-in">
-      <button key="open" class="hamburger" type="button" @click="toggleNavigation" v-if="!navigationVisible"><span class="flaticon-menu"></span></button>
-      <button key="close" class="hamburger" type="button" @click="toggleNavigation" v-else><span class="flaticon-close"></span></button>
+      <button key="open" class="hamburger" type="button" @click="toggleNavigation" v-if="!navigationVisible"><span class="flaticon-bars"></span></button>
+      <button key="close" class="hamburger" type="button" @click="toggleNavigation" v-else><span class="flaticon-delete"></span></button>
     </transition>
-    <div class="navigation-links main column a-end" :class="{ 'navigation-links--visible': navigationVisible }">
+    <div class="navigation-links main column a-end" :class="{ 'navigation-links--visible': navigationVisible }" @click="navigationVisible = false">
       <nuxt-link to="/articles">Blog</nuxt-link>
       <nuxt-link to="/programs">Programy</nuxt-link>
-      <nuxt-link to="/user" v-if="user">Moje konto</nuxt-link>
+      <nuxt-link to="/user" v-if="user">Panel</nuxt-link>
       <nuxt-link to="/cart">Koszyk [{{ items.length}}]</nuxt-link>
       <template v-if="!user">
-        <nuxt-link to="/login">Logowanie</nuxt-link>
-        <nuxt-link to="/register">Rejestracja</nuxt-link>
+        <button type="button" @click="openLogin">Logowanie</button>
+        <button type="button" @click="openRegister">Rejestracja</button>
       </template>
-      <nuxt-link to="/login" @click.native="logout" v-else>Wyloguj</nuxt-link>
+      <button type="button" @click="logout" v-else>Wyloguj</button>
     </div>
   </nav>
 </template>
@@ -33,18 +33,19 @@ export default {
     }, 
     items() {
       return this.$store.getters['cart/items'];
-    }, 
-    route() {
-      return this.$route;
-    }
-  },
-  watch: {
-    route() {
-      this.navigationVisible = false;
-    }
+    },
   },
   methods: {
+    openLogin() {
+      this.$store.commit('auth/toggleShowAuthentication', 'login');
+      this.navigationVisible = false;
+    },
+    openRegister() {
+      this.$store.commit('auth/toggleShowAuthentication', 'register');
+      this.navigationVisible = false;
+    },
     logout() {
+      this.$router.push('/programs');
       this.$store.commit('auth/logout');
     },
     toggleNavigation() {
@@ -102,7 +103,8 @@ export default {
     transform: translateX(100%);
     transition: transform 0.4s;
     padding-top: 5rem;
-    a {
+    a,
+    button {
       font-size: 26px;
       text-transform: uppercase;
       font-weight: 100;

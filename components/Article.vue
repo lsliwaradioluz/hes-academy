@@ -1,16 +1,13 @@
 <template>
-  <div 
+  <nuxt-link
+    :to="`/articles/${article.id}`"
+    tag="div" 
     class="article column j-end" 
     :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${article.image.url}')`}">
-    <div class="article-content">
-      <h3>{{ article.title }}</h3>
-      <p class="m00">{{ article.text | previewText }}</p>
-      <div class="row j-between a-end">
-        <nuxt-link class="button-primary" :to="`/articles/${article.id}`">Czytaj</nuxt-link>
-        <p class="m00 fs-12 t-textsecondary">{{ article.createdAt | getDate }}</p>
-      </div>
-    </div>
-  </div>
+    <p class="article-date m00 fs-12">{{ article.createdAt | getDate }}</p>
+    <h3>{{ article.title }}</h3>
+    <p class="m00">{{ article.text | previewText }}</p>
+  </nuxt-link>
 </template>
 
 <script>
@@ -26,6 +23,7 @@
 
 <style lang="scss" scoped>
   .article {
+    position: relative;
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -37,9 +35,15 @@
     }
   }
 
-  a {
-    margin-top: 1rem;
-    padding: .5rem 1rem;
-    border-radius: 0;
+  .article-date {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-45deg) translateX(-40px) translateY(-10px);
+    background-color: color(primary);
+    color: white;
+    padding: 2px;
+    width: 140px;
+    text-align: center;
   }
 </style>

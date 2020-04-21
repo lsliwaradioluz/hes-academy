@@ -2,9 +2,14 @@ import Cookies from 'js-cookie';
 
 export const state = () => ({
   user: null,
+  showAuthentication: false,
+  showRegister: false,
 });
 
 export const mutations = {
+  toggleShowAuthentication(state, payload) {
+    state.showAuthentication = payload;
+  },
   setUser(state, user) {
     state.user = user;
     Cookies.set('user', user);
@@ -21,10 +26,10 @@ export const mutations = {
 }
 
 export const getters = {  
-  user: state => {
+  user: (state) => {
     return state.user
   }, 
-  programs: state => {
+  programs: (state) => {
     const programs = [];
     if (state.user && state.user.orders) {
       state.user.orders.forEach(order => {
@@ -32,5 +37,8 @@ export const getters = {
       });
     }
     return programs;
-  }, 
+  },
+  showAuthentication: (state) => {
+    return state.showAuthentication;
+  },
 }

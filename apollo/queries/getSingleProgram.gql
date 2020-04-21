@@ -1,17 +1,18 @@
 query getSingleProgram($id: ID!) {
   program(id: $id) {
     id
-    nazwa
-    cena
-    foto {
+    name
+    price
+    description
+    image {
       url
     }
     lessons {
       id
-      nazwa
-      opis
-      wideo
-      foto {
+      name
+      description
+      video
+      image {
         url
       } 
     }

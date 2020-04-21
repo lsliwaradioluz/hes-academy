@@ -39,7 +39,7 @@
         query: getAllArticles, 
         variables() {
           return {
-            limit: 3
+            limit: 4
           }
         }
       }
@@ -70,7 +70,7 @@
   }
 
   .article-page-related {
-    border-top: 1px solid color(textsecondary);
+    border-top: 1px solid color(texttertiary);
     padding-top: 1rem;
   }
 </style>

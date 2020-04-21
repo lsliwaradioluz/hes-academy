@@ -1,16 +1,14 @@
 <template>
-  <div 
-    class="article column j-end" 
-    :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${article.image.url}')`}">
-    <div class="article-content">
-      <h3>{{ article.title }}</h3>
-      <p class="m00">{{ article.text | previewText }}</p>
-      <div class="row j-between a-end">
-        <nuxt-link class="button-primary" :to="`/articles/${article.id}`">Czytaj</nuxt-link>
-        <p class="m00 fs-12 t-textsecondary">{{ article.createdAt | getDate }}</p>
-      </div>
+  <nuxt-link class="article row" tag="div" :to="`/articles/${article.id}`">
+    <div
+      class="article-image avatar"
+      :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${article.image.url}')`}">
     </div>
-  </div>
+    <div class="article-content">
+      <h4 class="m00">{{ article.title }}</h4>
+      <p class="m00 fs-12 t-textsecondary">{{ article.createdAt | getDate }}</p>
+    </div>
+  </nuxt-link>
 </template>
 
 <script>
@@ -29,12 +27,18 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    min-height: 350px;
     color: white;
-    padding: 1rem;
-    h3 {
-      margin-bottom: 0.5rem;
-    }
+    padding: .5rem 0;
+    color: black;
+  }
+
+  .article-image {
+    height: 60px;
+    width: 60px;
+    border: none;
+    border-radius: 0;
+    flex-shrink: 0;
+    margin-right: 5px;
   }
 
   a {

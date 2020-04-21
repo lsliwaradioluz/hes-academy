@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 20/04/2020 09:28
+    Creation date: 21/04/2020 07:28
     */
 
     @font-face {
@@ -37,36 +37,42 @@
   font-smoothing: antialiased;
     }
 
-    .flaticon-close:before { content: "\f100"; }
-.flaticon-email:before { content: "\f101"; }
-.flaticon-telephone:before { content: "\f102"; }
-.flaticon-placeholder:before { content: "\f103"; }
-.flaticon-cardinal-point:before { content: "\f104"; }
-.flaticon-shopping-cart:before { content: "\f105"; }
-.flaticon-heartbeat:before { content: "\f106"; }
-.flaticon-stopwatch:before { content: "\f107"; }
-.flaticon-knowledge:before { content: "\f108"; }
-.flaticon-mouse:before { content: "\f109"; }
-.flaticon-menu:before { content: "\f10a"; }
-.flaticon-login:before { content: "\f10b"; }
-.flaticon-book:before { content: "\f10c"; }
-.flaticon-payment-method:before { content: "\f10d"; }
-.flaticon-ebook:before { content: "\f10e"; }
+    .flaticon-mouse:before { content: "\f100"; }
+.flaticon-login:before { content: "\f101"; }
+.flaticon-book:before { content: "\f102"; }
+.flaticon-payment-method:before { content: "\f103"; }
+.flaticon-ebook:before { content: "\f104"; }
+.flaticon-mind-mapping:before { content: "\f105"; }
+.flaticon-stopwatch:before { content: "\f106"; }
+.flaticon-dumbbell:before { content: "\f107"; }
+.flaticon-bars:before { content: "\f108"; }
+.flaticon-delete:before { content: "\f109"; }
+.flaticon-left-arrow:before { content: "\f10a"; }
+.flaticon-shopping-cart:before { content: "\f10b"; }
+.flaticon-locked-padlock:before { content: "\f10c"; }
+.flaticon-email:before { content: "\f10d"; }
+.flaticon-phone-call:before { content: "\f10e"; }
 .flaticon-facebook:before { content: "\f10f"; }
+.flaticon-map-location:before { content: "\f110"; }
+.flaticon-infinity:before { content: "\f111"; }
+.flaticon-mobile-phone:before { content: "\f112"; }
     
-    $font-Flaticon-close: "\f100";
-    $font-Flaticon-email: "\f101";
-    $font-Flaticon-telephone: "\f102";
-    $font-Flaticon-placeholder: "\f103";
-    $font-Flaticon-cardinal-point: "\f104";
-    $font-Flaticon-shopping-cart: "\f105";
-    $font-Flaticon-heartbeat: "\f106";
-    $font-Flaticon-stopwatch: "\f107";
-    $font-Flaticon-knowledge: "\f108";
-    $font-Flaticon-mouse: "\f109";
-    $font-Flaticon-menu: "\f10a";
-    $font-Flaticon-login: "\f10b";
-    $font-Flaticon-book: "\f10c";
-    $font-Flaticon-payment-method: "\f10d";
-    $font-Flaticon-ebook: "\f10e";
+    $font-Flaticon-mouse: "\f100";
+    $font-Flaticon-login: "\f101";
+    $font-Flaticon-book: "\f102";
+    $font-Flaticon-payment-method: "\f103";
+    $font-Flaticon-ebook: "\f104";
+    $font-Flaticon-mind-mapping: "\f105";
+    $font-Flaticon-stopwatch: "\f106";
+    $font-Flaticon-dumbbell: "\f107";
+    $font-Flaticon-bars: "\f108";
+    $font-Flaticon-delete: "\f109";
+    $font-Flaticon-left-arrow: "\f10a";
+    $font-Flaticon-shopping-cart: "\f10b";
+    $font-Flaticon-locked-padlock: "\f10c";
+    $font-Flaticon-email: "\f10d";
+    $font-Flaticon-phone-call: "\f10e";
     $font-Flaticon-facebook: "\f10f";
+    $font-Flaticon-map-location: "\f110";
+    $font-Flaticon-infinity: "\f111";
+    $font-Flaticon-mobile-phone: "\f112";

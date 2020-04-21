@@ -10,7 +10,7 @@
         <p>info@hesacademy.pl</p>
       </a>
       <a href="tel:+48 880 833 780">
-        <span class="flaticon-telephone"></span>
+        <span class="flaticon-phone-call"></span>
         <p>+48 880 833 780</p>
       </a>
       <a href="https://www.facebook.com/HESAcademy/">
@@ -18,7 +18,7 @@
         <p>info@hesacademy.pl</p>
       </a>
       <a href="mailto:info@hesacademy.pl">
-        <span class="flaticon-placeholder"></span>
+        <span class="flaticon-map-location"></span>
         <p>info@hesacademy.pl</p>
       </a>
     </div>

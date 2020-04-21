@@ -3,7 +3,7 @@
     <div class="header-fade"></div>
     <transition name="slide-up" appear>  
       <div class="header-content column j-center a-center">
-        <h1 class="header-title" :class="{ 'title--highlighted': highlighted}">
+        <h1 class="header-title" :class="{ 'text--highlighted': highlighted}">
           <slot name="header"></slot>
         </h1>
         <p class="header-text">
@@ -77,7 +77,7 @@
     margin: 0;
   }
 
-  .title--highlighted {
+  .text--highlighted {
     text-shadow: none;
     background-color: color(primary);
     padding: .5rem;

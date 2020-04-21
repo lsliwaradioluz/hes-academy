@@ -1,6 +1,11 @@
 <template>
   <div class="programs-page">
+    <Header background="wysilek.jpg" highlighted>
+      <template v-slot:header>Programy</template>
+    </Header>
     <div class="programs">
+      <h2 class="header--underlined">Cała wiedza w jednym miejscu</h2>
+      <p>Zapoznaj się z bogatą ofertą programów szkoleniowych on-line. Wybierz ten, który odpowiada Twoim potrzebom. Wykup dożywotni dostęp i ciesz się nieograniczonym dostępem do wiedzy.</p>
       <Program v-for="program in programs" :program="program" :key="program.id" />
     </div>
   </div>
@@ -23,10 +28,16 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
   .programs {
-    display: flex; 
+    padding: 3rem 1rem;
+    h2 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
   }
-
 </style>
