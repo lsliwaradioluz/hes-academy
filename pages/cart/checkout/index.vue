@@ -1,39 +1,46 @@
 <template>
   <div class="checkout-page">
-    <h2>Wybrane produkty:</h2>
-    <ul>
-      <li v-for="item in items" :key="item.id">
-        <p>{{ item.nazwa }}</p>
-        <p>{{ item.cena }}zł</p>
-        <p>Razem: {{ price }}zł</p>
-      </li>
-    </ul>
-    <form @submit.stop.prevent="handleSubmit">
-      <fieldset>
-        <div class="uk-margin">
-          <label for="card">Karta</label>
-            <card
-              ref="card-stripe"
-              :stripe="stripeKey"
-              @change='complete = $event.complete'
-            />
-        </div>
-        <button type="submit">Finalizuj płatność</button>
-      </fieldset>
-    </form>
+    <Header background="wysilek.jpg" highlighted>
+      <template v-slot:header>Kasa</template>
+    </Header>
+    <section class="main">
+      <h2 class="mt0">Podsumowanie</h2>
+      <p class="mt0">Od dokonania zakupu poniższych produktów dzieli Cię już tylko krok. Jeżeli chcesz wycofać którąś pozycję, wróć do koszyka i dokonaj zmian.</p>
+      <p class="t-textsecondary fs-12">Kupujesz produktów: {{ items.length }}</p>
+      <CartItem 
+        v-for="item in items" 
+        :key="item.id" 
+        :item="item" 
+        @delete="removeItem($event)"
+        :show-delete-button="false">
+      </CartItem>
+      <p class="checkout-price price fs-20">Razem: {{ price }}zł</p>
+      <h2>Dane do zamówienia</h2>
+      <p>Uzupełnij dane aktywnej karty płatniczej, z której ma zostać pobrana kwota {{ price }}zł. Pamiętaj, aby podać jej numer, termin ważności oraz kod CVV.</p>
+      <form class="column" @submit.stop.prevent="handleSubmit">
+      <card
+        ref="card-stripe"
+        :stripe="stripeKey"
+        @change='complete = $event.complete'>
+      </card>
+      <button class="button-primary mt1" type="submit">Finalizuj płatność</button>
+      </form>
+    </section>
   </div>
 </template>
 
 <script>
   import { mapGetters, mapMutations } from 'vuex';
   import { Card, createToken } from 'vue-stripe-elements-plus';
-  import createOrder from '~/apollo/mutations/createOrder.gql';   
+  import createOrder from '~/apollo/mutations/createOrder.gql';  
+  import CartItem from '~/components/CartItem.vue';
 
   export default {
-    middleware: 'redirect',
     components: {
       Card,
+      CartItem,
     },
+    middleware: 'redirect',
     data() {
       return {
         client: this.$apollo.getClient(),
@@ -91,4 +98,10 @@
     },
   }
 </script>
+
+<style lang="scss" scoped>
+  .checkout-price {
+    border-bottom: 1px solid color(texttertiary);
+  }
+</style>
 

@@ -17,6 +17,7 @@ export const mutations = {
   },
   addItem(state, item) {
     state.items.push(item);
+    console.log(item);
     Cookies.set('cart', state.items);
   },
   removeItem(state, item) {
@@ -40,10 +41,10 @@ export const getters = {
   },
   price: state => {
     const price = state.items.reduce((accumulator, item) => {
-      return accumulator + item.cena
+      return accumulator + item.price
     });
 
-    return state.items.length > 1 ? price : state.items[0].cena;
+    return state.items.length > 1 ? price : state.items[0].price;
   },
 }
 

@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 21/04/2020 07:28
+    Creation date: 21/04/2020 15:39
     */
 
     @font-face {
@@ -48,14 +48,15 @@
 .flaticon-bars:before { content: "\f108"; }
 .flaticon-delete:before { content: "\f109"; }
 .flaticon-left-arrow:before { content: "\f10a"; }
-.flaticon-shopping-cart:before { content: "\f10b"; }
+.flaticon-infinity:before { content: "\f10b"; }
 .flaticon-locked-padlock:before { content: "\f10c"; }
-.flaticon-email:before { content: "\f10d"; }
-.flaticon-phone-call:before { content: "\f10e"; }
-.flaticon-facebook:before { content: "\f10f"; }
-.flaticon-map-location:before { content: "\f110"; }
-.flaticon-infinity:before { content: "\f111"; }
-.flaticon-mobile-phone:before { content: "\f112"; }
+.flaticon-mobile-phone:before { content: "\f10d"; }
+.flaticon-email:before { content: "\f10e"; }
+.flaticon-phone-call:before { content: "\f10f"; }
+.flaticon-facebook:before { content: "\f110"; }
+.flaticon-map-location:before { content: "\f111"; }
+.flaticon-shopping-cart:before { content: "\f112"; }
+.flaticon-shopping-cart-1:before { content: "\f113"; }
     
     $font-Flaticon-mouse: "\f100";
     $font-Flaticon-login: "\f101";
@@ -68,11 +69,12 @@
     $font-Flaticon-bars: "\f108";
     $font-Flaticon-delete: "\f109";
     $font-Flaticon-left-arrow: "\f10a";
-    $font-Flaticon-shopping-cart: "\f10b";
+    $font-Flaticon-infinity: "\f10b";
     $font-Flaticon-locked-padlock: "\f10c";
-    $font-Flaticon-email: "\f10d";
-    $font-Flaticon-phone-call: "\f10e";
-    $font-Flaticon-facebook: "\f10f";
-    $font-Flaticon-map-location: "\f110";
-    $font-Flaticon-infinity: "\f111";
-    $font-Flaticon-mobile-phone: "\f112";
+    $font-Flaticon-mobile-phone: "\f10d";
+    $font-Flaticon-email: "\f10e";
+    $font-Flaticon-phone-call: "\f10f";
+    $font-Flaticon-facebook: "\f110";
+    $font-Flaticon-map-location: "\f111";
+    $font-Flaticon-shopping-cart: "\f112";
+    $font-Flaticon-shopping-cart-1: "\f113";

@@ -6,7 +6,7 @@
     :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${article.image.url}')`}">
     <p class="article-date m00 fs-12">{{ article.createdAt | getDate }}</p>
     <h3>{{ article.title }}</h3>
-    <p class="m00">{{ article.text | previewText }}</p>
+    <p class="m00">{{ article.text | shorten100 }}</p>
   </nuxt-link>
 </template>
 

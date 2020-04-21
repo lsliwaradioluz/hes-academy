@@ -31,11 +31,7 @@
 <style lang="scss" scoped>
   .programs {
     padding: 3rem 1rem;
-    h2 {
-      text-align: center;
-    }
     p {
-      text-align: center;
       margin-top: 0;
       margin-bottom: 2rem;
     }

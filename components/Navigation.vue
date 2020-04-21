@@ -1,15 +1,37 @@
 <template>
-  <nav class="navigation row j-between a-center" :class="{ 'navigation--triggered': scroll > 5 && !navigationVisible }">
-    <nuxt-link to="/" class="logo"><img :src="require('../assets/images/logo.svg')" alt="logo"></nuxt-link>
-    <transition name="slide-right" mode="out-in">
-      <button key="open" class="hamburger" type="button" @click="toggleNavigation" v-if="!navigationVisible"><span class="flaticon-bars"></span></button>
-      <button key="close" class="hamburger" type="button" @click="toggleNavigation" v-else><span class="flaticon-delete"></span></button>
-    </transition>
-    <div class="navigation-links main column a-end" :class="{ 'navigation-links--visible': navigationVisible }" @click="navigationVisible = false">
+  <nav class="nav row j-between a-center" :class="{ 'nav--triggered': scroll > 5 && !navigationVisible }">
+    <nuxt-link to="/" class="nav-logo logo">
+      <img :src="require('../assets/images/logo.svg')" alt="logo">
+    </nuxt-link>
+    <div class="nav-icons">
+      <transition name="fade">
+        <nuxt-link to="/cart" v-if="items.length > 0">
+          <span class="flaticon-shopping-cart mr05">
+            <span class="fs-12">{{ items.length }}</span>
+          </span>
+        </nuxt-link>
+      </transition>
+      <transition name="slide-right" mode="out-in">
+        <button 
+          key="open"
+          type="button" 
+          @click="toggleNavigation" 
+          v-if="!navigationVisible">
+          <span class="flaticon-bars"></span>
+        </button>
+        <button 
+          key="close" 
+          type="button" 
+          @click="toggleNavigation" 
+          v-else>
+          <span class="flaticon-delete"></span>
+        </button>
+      </transition>
+    </div>
+    <div class="nav-links main column a-end" :class="{ 'nav-links--visible': navigationVisible }">
       <nuxt-link to="/articles">Blog</nuxt-link>
       <nuxt-link to="/programs">Programy</nuxt-link>
       <nuxt-link to="/user" v-if="user">Panel</nuxt-link>
-      <nuxt-link to="/cart">Koszyk [{{ items.length}}]</nuxt-link>
       <template v-if="!user">
         <button type="button" @click="openLogin">Logowanie</button>
         <button type="button" @click="openRegister">Rejestracja</button>
@@ -34,6 +56,14 @@ export default {
     items() {
       return this.$store.getters['cart/items'];
     },
+    route() {
+      return this.$route;
+    }
+  },
+  watch: {
+    route() {
+      this.navigationVisible = false;
+    }
   },
   methods: {
     openLogin() {
@@ -45,7 +75,7 @@ export default {
       this.navigationVisible = false;
     },
     logout() {
-      this.$router.push('/programs');
+      this.$router.push('/');
       this.$store.commit('auth/logout');
     },
     toggleNavigation() {
@@ -63,7 +93,7 @@ export default {
 
 <style lang="scss" scoped>
 
-  .navigation {
+  .nav {
     z-index: 1000;
     position: fixed;
     top: 0;
@@ -73,26 +103,31 @@ export default {
     transition: all 0.3s;
   }
 
-  .navigation--triggered {
+  .nav--triggered {
     background-color: color(white);
     box-shadow: 0 1px 10px 3px rgba(0,0,0,.2);
-    .logo {
+    .nav-logo {
       width: 125px;
     }
   }
 
-  .logo {
+  .nav-logo {
     width: 150px;
     z-index: 2;
     transition: width .3s;
   }
 
-  .hamburger {
-    color: color(primary);
+  .nav-icons {
     z-index: 2;
+    button {
+      padding: 0;
+    }
+    span {
+      color: color(primary);
+    }
   }
 
-  .navigation-links {
+  .nav-links {
     position: absolute;
     top: 0;
     left: 0;
@@ -132,7 +167,7 @@ export default {
     }
   }
 
-  .navigation-links--visible {
+  .nav-links--visible {
     transform: translateX(0);
   }
 
@@ -152,25 +187,4 @@ export default {
       transform: translateX(0);
     }
   }
-
-  // .links {
-  //   display: flex;
-  //   align-items: center;
-  // }
-
-  // a {
-  //   padding: .5rem;
-  // }
-
-  // .status {
-  //   display: flex;
-  // }
-
-  // .nuxt-link-exact-active {
-  //   color: color(primary);
-  // }
-
-  // p {
-  //   margin: 0;
-  // }
 </style>

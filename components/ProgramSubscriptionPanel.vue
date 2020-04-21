@@ -6,7 +6,7 @@
       <nuxt-link class="button-primary" tag="button" type="button" to="/cart" v-if="isItemInCart">Przejdź do koszyka</nuxt-link>
       <template v-else>
         <nuxt-link class="button-primary" tag="button" type="button" to="/cart/checkout" @click.native="buyProgram">Kup teraz</nuxt-link>
-        <button class="button-tertiary" type="button" @click="addItem(program)">Dodaj do koszyka</button>
+        <button class="button-tertiary" type="button" @click="addToCart(program)">Dodaj do koszyka</button>
       </template>
     </div>
     <template v-else>
@@ -43,8 +43,19 @@
     methods: {
       ...mapMutations({
         emptyCart: 'cart/emptyCart', 
-        addItem: 'cart/addItem'
+        addItem: 'cart/addItem', 
+        setNotification: 'utils/setNotification',
       }),
+      addToCart(program) {
+        const item = {
+          id: program.id,
+          name: program.name, 
+          price: program.price, 
+          image: program.image
+        }
+        this.addItem(item);
+        this.setNotification('Dodano produkt do koszyka');
+      },
       buyProgram() {
         if (this.user) {
           this.emptyCart();
@@ -57,7 +68,7 @@
 
 <style lang="scss" scoped>
   .button-primary,
-  .button-secondary {
+  .button-tertiary {
     padding: .5rem 1rem;
   }
 </style>

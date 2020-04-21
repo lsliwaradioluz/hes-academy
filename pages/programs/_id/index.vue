@@ -26,7 +26,7 @@
       </section>
       <LessonDetailed :lesson="program.lessons[lesson]" v-else/>
       <section class="program-lessons column">
-        <h2>Lekcje</h2>
+        <h2 class="mb05">Wykłady</h2>
         <Lesson 
           v-for="(lesson, index) in program.lessons" 
           :key="lesson.id" 

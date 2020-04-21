@@ -24,6 +24,7 @@
   import updateUser from '~/apollo/mutations/updateUser.gql';
 
   export default {
+    middleware: 'redirect',
     data() {
       return {
         client: this.$apollo.getClient(),
