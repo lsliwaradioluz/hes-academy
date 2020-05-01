@@ -28,17 +28,12 @@
       }
     },
     methods: {
-      register(user) {
-        if (this.user.password != this.user.repeatPassword) {
-          this.error = 'Podane hasła nie są takie same';
-          return
-        }
-        
+      register(user) {        
         const endpoint = process.env.NODE_ENV == 'development' ? 'http://localhost:1337/auth/local/register' : 'https://hesacademy-backend.herokuapp.com/auth/local/register';
         this.$axios.$post(endpoint, {
-          username: this.user.username,
-          email: this.user.email, 
-          password: this.user.password,
+          username: user.username,
+          email: user.email, 
+          password: user.password,
         })
           .then(res => {
             this.$apolloHelpers.onLogin(res.jwt, undefined, { expires: 7 });

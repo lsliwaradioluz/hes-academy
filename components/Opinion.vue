@@ -1,15 +1,15 @@
 <template>
-  <div class="client column">
-    <div class="avatar" :style="{ backgroundImage: `url('${client.image.url}')`}"></div>
-    <h3>{{ client.name }}</h3>
-    <p>{{ client.opinion }}</p>
+  <div class="opinion column">
+    <div class="avatar" :style="{ backgroundImage: `url('${opinion.image.url}')`}"></div>
+    <h3>{{ opinion.name }}</h3>
+    <p>{{ opinion.quote }}</p>
   </div>
 </template>
 
 <script>
   export default {
     props: {
-      client: {
+      opinion: {
         type: Object, 
         required: true, 
       }
@@ -19,7 +19,7 @@
 
 <style lang="scss" scoped>
   
-  .client {
+  .opinion {
     border: 2px solid color(primary);
     position: relative;
     padding: 1rem;

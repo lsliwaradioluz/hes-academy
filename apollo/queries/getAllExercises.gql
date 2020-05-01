@@ -1,0 +1,11 @@
+query getAllExercises {
+  exercises {
+    id
+    name
+    description 
+    category
+    video {
+      url
+    }
+  }
+}

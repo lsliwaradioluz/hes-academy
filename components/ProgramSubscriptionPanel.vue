@@ -1,17 +1,11 @@
 <template>
   <article>
-    <div v-if="!isItemPurchased">
+    <div class="column" v-if="!isItemPurchased">
       <span class="price">{{ program.price }}zł</span>
       <p>Pierwszą lekcję możesz zobaczyć w ramach bezpłatnego dostępu. Aby zobaczyć pozostałe, wykup pełen dostęp.</p>
-      <nuxt-link class="button-primary" tag="button" type="button" to="/cart" v-if="isItemInCart">Przejdź do koszyka</nuxt-link>
-      <template v-else>
-        <nuxt-link class="button-primary" tag="button" type="button" to="/cart/checkout" @click.native="buyProgram">Kup teraz</nuxt-link>
-        <button class="button-tertiary" type="button" @click="addToCart(program)">Dodaj do koszyka</button>
-      </template>
+      <nuxt-link class="button-tertiary" tag="button" type="button" to="/cart" v-if="isItemInCart">Przejdź do koszyka</nuxt-link>
+      <button class="button-primary" type="button" @click="addToCart" v-else>Dodaj do koszyka</button>
     </div>
-    <template v-else>
-      Kupiłeś program i masz pełen dostęp
-    </template>
   </article>
 </template>
 
@@ -28,8 +22,8 @@
     computed: {
       ...mapGetters({
         items: 'cart/items', 
-        programs: 'auth/programs',
         user: 'auth/user',
+        programs: 'auth/programs',
       }),
       isItemPurchased() {
         const record = this.programs.find(program => program.id === this.program.id);
@@ -39,6 +33,18 @@
         const record = this.items.find(item => item.id === this.program.id);
         return Boolean(record);
       },
+      programForCart() {
+        const programForCart = {
+          id: this.program.id,
+          name: this.program.name, 
+          description: this.program.description,
+          price: this.program.price, 
+          image: this.program.image,
+          stripeID: this.program.stripeID,
+        }
+
+        return programForCart;
+      }
     },
     methods: {
       ...mapMutations({
@@ -46,20 +52,15 @@
         addItem: 'cart/addItem', 
         setNotification: 'utils/setNotification',
       }),
-      addToCart(program) {
-        const item = {
-          id: program.id,
-          name: program.name, 
-          price: program.price, 
-          image: program.image
-        }
-        this.addItem(item);
+      addToCart() {
+        this.addItem(this.programForCart);
         this.setNotification('Dodano produkt do koszyka');
       },
       buyProgram() {
         if (this.user) {
           this.emptyCart();
-          this.addItem(this.program);
+          this.addItem(this.programForCart);
+          this.$router.push('/cart/checkout');
         }
       }
     }

@@ -1,0 +1,9 @@
+query {
+  stopka {
+    telephone
+    email
+    address
+    facebook
+    instagram
+  }
+}

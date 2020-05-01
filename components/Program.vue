@@ -30,6 +30,7 @@
     background-position: center;
     overflow: hidden;
     min-height: 350px;
+    margin-bottom: 1rem;
     color: white;
     padding: 1rem;
     h3 {

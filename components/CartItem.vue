@@ -7,7 +7,7 @@
       </div>
       <div class="item-content">
         <nuxt-link :to="`/programs/${item.id}`">
-          <h4 class="m00">{{ name | shorten45 }}</h4>
+          <h4 class="m00">{{ item.name | shorten45 }}</h4>
         </nuxt-link>
         <p class="m00">{{ item.price }}zł</p>
       </div>
@@ -30,11 +30,6 @@
         default: () => true,
       }
     },
-    data() {
-      return {
-        name: 'Siła statyczna - podejście holistyczne do treningu motorycznego piłkarzy ręcznych'
-      }
-    }
   }
 </script>
 

@@ -4,8 +4,11 @@ mutation($input: updateUserInput) {
       id
       username
       email
+      subscription {
+        id
+      }
       orders {
-        amount
+        id
         products
       }
     }

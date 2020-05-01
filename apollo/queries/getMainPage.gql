@@ -1,0 +1,25 @@
+query {
+  stronaGlowna {
+    landing {
+      id
+      header
+      subheader
+    }
+    coaches {
+      id
+      name
+      description
+      image {
+        url
+      }
+    }
+    opinions {
+      id
+      name
+      quote
+      image {
+        url
+      }
+    }
+  }
+}

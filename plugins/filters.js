@@ -6,7 +6,11 @@ Vue.filter('shorten100', (value) => {
 });
 
 Vue.filter('shorten45', (value) => {
-  return `${value.slice(0, 45)}...`;
+  if (value.length > 45) {
+    return `${value.slice(0, 45)}...`;
+  } else {
+    return value;
+  }
 });
 
 Vue.filter('getDate', (value) => {

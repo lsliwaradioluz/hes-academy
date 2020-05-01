@@ -1,7 +1,6 @@
 import Cookies from 'js-cookie';
 
 export const state = () => ({
-  cartBackup: [], 
   items: []
 });
 
@@ -9,15 +8,11 @@ export const mutations = {
   setItems(state, items) {
     state.items = items;
   },
-  setCartBackup(state, backup) {
-    state.cartBackup = backup;
-  },
   resetItems(state) {
     state.items = state.deletedItems;
   },
   addItem(state, item) {
     state.items.push(item);
-    console.log(item);
     Cookies.set('cart', state.items);
   },
   removeItem(state, item) {
@@ -25,13 +20,9 @@ export const mutations = {
     state.items.splice(index, 1);
     Cookies.set('cart', state.items);
   },
-  emptyCart(state, backup) {
-    if (backup) {
-      state.itemsBackup = state.items;
-      Cookies.set('cartBackup', state.itemsBackup);
-    }
+  emptyCart(state) {
     state.items = [];
-    Cookies.set('cart', state.items);
+    Cookies.set('cart', []);
   }
 }
 
@@ -41,10 +32,10 @@ export const getters = {
   },
   price: state => {
     const price = state.items.reduce((accumulator, item) => {
-      return accumulator + item.price
-    });
+      return accumulator + item.price;
+    }, 0);
 
-    return state.items.length > 1 ? price : state.items[0].price;
+    return price;
   },
 }
 

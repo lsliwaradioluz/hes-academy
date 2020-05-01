@@ -30,11 +30,9 @@ export const getters = {
     return state.user
   }, 
   programs: (state) => {
-    const programs = [];
-    if (state.user && state.user.orders) {
-      state.user.orders.forEach(order => {
-        programs.push(...order.products);
-      });
+    let programs = [];
+    if (state.user) {
+      programs = state.user.programs;
     }
     return programs;
   },

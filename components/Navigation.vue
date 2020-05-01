@@ -28,15 +28,23 @@
         </button>
       </transition>
     </div>
-    <div class="nav-links main column a-end" :class="{ 'nav-links--visible': navigationVisible }">
-      <nuxt-link to="/articles">Blog</nuxt-link>
-      <nuxt-link to="/programs">Programy</nuxt-link>
-      <nuxt-link to="/user" v-if="user">Panel</nuxt-link>
-      <template v-if="!user">
-        <button type="button" @click="openLogin">Logowanie</button>
-        <button type="button" @click="openRegister">Rejestracja</button>
-      </template>
-      <button type="button" @click="logout" v-else>Wyloguj</button>
+    <div class="nav-links main" :class="{ 'nav-links--visible': navigationVisible }">
+      <div class="column a-end">
+        <nuxt-link to="/articles">Blog</nuxt-link>
+        <nuxt-link to="/exercises">Ćwiczenia</nuxt-link>
+        <nuxt-link to="/programs">Programy</nuxt-link>
+        <nuxt-link to="/programs">Produkty</nuxt-link>
+        <nuxt-link to="/user">Trenuj z nami</nuxt-link>
+      </div>
+      <div class="column a-end">
+        <nuxt-link to="/user" v-if="user">Panel</nuxt-link>
+        <template v-if="!user">
+          <button type="button" @click="openLogin">Logowanie</button>
+          <button type="button" @click="openRegister">Rejestracja</button>
+        </template>
+        <button type="button" @click="logout" v-else>Wyloguj</button>
+        <p class="fs-12 t-texttertiary mt0" v-if="user">Zalogowano jako {{ user.username }}</p>
+      </div>
     </div>
   </nav>
 </template>
@@ -98,7 +106,7 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     padding: 1rem;
     transition: all 0.3s;
   }
@@ -163,6 +171,11 @@ export default {
       &:hover::after {
         display: block;
         animation: slide-right 0.3s;
+      }
+    }
+    div:nth-child(2) {
+      button, a {
+        color: color(primary);
       }
     }
   }

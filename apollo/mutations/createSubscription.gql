@@ -1,0 +1,27 @@
+mutation($input: createSubscriptionInput) {
+  createSubscription(input: $input) {
+    subscription {
+      id
+      user {
+        id
+        stripeID
+        username
+        email
+        source {
+          id
+          stripeID
+          brand
+          last4
+        }
+        subscription {
+          id
+          stripeID
+        }
+        orders {
+          id
+          products
+        }
+      }
+    }
+  }
+}

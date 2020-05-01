@@ -1,11 +1,12 @@
 <template>
   <div class="program-page" v-if="!$apollo.loading">
     <Header :background-url="program.image.url">
-      <template v-slot:header>Program: {{ program.name }}</template>
+      <template v-slot:header>{{ program.name }}</template>
+      <template v-slot:caption>Program</template>
     </Header>
-    <main class="main">
+    <main class="main" ref="top">
       <section class="program-purchase-details" v-if="lesson == null">
-        <h2 class="mt0">O kursie</h2>
+        <h2 class="mt0">O programie</h2>
         <p class="m00">{{ program.description }}</p>
         <h2>Zawartość</h2>
         <ul class="program-features">
@@ -24,7 +25,7 @@
         </ul>
         <ProgramSubscriptionPanel :program="program" />
       </section>
-      <LessonDetailed :lesson="program.lessons[lesson]" v-else/>
+      <LessonDetailed :lesson="program.lessons[lesson]" :programid="program.id" v-else/>
       <section class="program-lessons column">
         <h2 class="mb05">Wykłady</h2>
         <Lesson 
@@ -32,7 +33,9 @@
           :key="lesson.id" 
           :lesson="lesson" 
           :lesson-index="index" 
-          :locked="!isItemPurchased && index > 0" />
+          :locked="!isItemPurchased && index > 0">
+        </Lesson>
+        <p class="t-textsecondary fs-12" v-if="program.lessons.length == 0">Brak wykładów do pokazania.</p>
       </section>
     </main>
   </div>
@@ -57,7 +60,7 @@ export default {
         }
       }
     }
-  }, 
+  },
   computed: {
     lesson() {
       return this.$route.query.lesson;
@@ -66,12 +69,20 @@ export default {
       const record = this.programs.find(program => program.id === this.program.id);
       return Boolean(record);
     },
+    query() {
+      return this.$route.query
+    },
     ...mapGetters({
       items: 'cart/items', 
       programs: 'auth/programs',
       user: 'auth/user',
     })
   },
+  watch: {
+    query() {
+      this.$refs.top.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
 </script>
   

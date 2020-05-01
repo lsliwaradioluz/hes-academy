@@ -1,0 +1,26 @@
+mutation($input: updateSourceInput) {
+  updateSource(input: $input) {
+    source {
+      id
+      user {
+        id
+        username
+        email
+        source {
+          id
+          stripeID
+          brand
+          last4
+        }
+        subscription {
+          id
+        }
+        stripeID
+        orders {
+          amount
+          products
+        }
+      }
+    }
+  }
+}

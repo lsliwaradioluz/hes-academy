@@ -1,0 +1,8 @@
+mutation($input: createPaymentInput) {
+  createPayment(input: $input) {
+    payment {
+      id
+      stripeID
+    }
+  }
+}

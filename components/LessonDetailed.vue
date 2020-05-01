@@ -1,12 +1,12 @@
 <template>
   <section class="lesson-detailed">
-    <button class="mb1 p00" type="button" @click="$router.go(-1)"><span class="flaticon-left-arrow"></span></button>
-    <p class="t-textsecondary m00">Lekcja {{ lessonIndex + 1 }}</p>
+    <nuxt-link tag="span" class="flaticon-left-arrow mb1 p00" type="button" :to="`/programs/${programid}`"></nuxt-link>
+    <p class="t-textsecondary m00">Wykład {{ lessonIndex + 1 }}</p>
     <h2 class="mt0">{{ lesson.name }}</h2>
     <iframe 
       height="315" 
       :src="lesson.video" 
-      frameborder="0" 
+      frameborder="0"
       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
       allowfullscreen>
     </iframe>
@@ -20,6 +20,10 @@ export default {
     lesson: {
       type: Object, 
       required: true, 
+    },
+    programid: {
+      type: String, 
+      required: true,
     }
   },
   computed: {

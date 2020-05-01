@@ -2,24 +2,24 @@
   <footer>
     <div class="footer-image column a-center j-center">
       <h2>Im dłużej czekasz na przyszłość, tym będzie krótsza</h2>
-      <a href="mailto:info@hesacademy.pl" class="button-primary" type="button">Skontaktuj się z nami</a>
+      <a :href="`mailto:${stopka.email}`" class="button-primary" type="button">Skontaktuj się z nami</a>
     </div>
     <div class="footer-content">
-      <a href="mailto:info@hesacademy.pl">
+      <a :href="`mailto:${stopka.email}`">
         <span class="flaticon-email"></span>
-        <p>info@hesacademy.pl</p>
+          <p>{{ stopka.email }}</p>
       </a>
-      <a href="tel:+48 880 833 780">
+      <a :href="`tel:${stopka.telephone}`">
         <span class="flaticon-phone-call"></span>
-        <p>+48 880 833 780</p>
+        <p>{{ stopka.telephone }}</p>
       </a>
-      <a href="https://www.facebook.com/HESAcademy/">
+      <a :href="stopka.facebook">
         <span class="flaticon-facebook"></span>
-        <p>info@hesacademy.pl</p>
+        <p>Facebook</p>
       </a>
       <a href="mailto:info@hesacademy.pl">
         <span class="flaticon-map-location"></span>
-        <p>info@hesacademy.pl</p>
+        <p>{{ stopka.address }}</p>
       </a>
     </div>
     <p class="footer-caption">
@@ -29,8 +29,14 @@
 </template>
 
 <script>
+  import getFooter from '~/apollo/queries/getFooter.gql';
+
   export default {
-    
+    apollo: {
+      stopka: { 
+        query: getFooter
+      },
+    },
   }
 </script>
 

@@ -1,11 +1,10 @@
 <template>
   <div class="main-page">
     <Header background="wysilek.jpg">
-      <template v-slot:header>Każdy wysiłek ma znaczenie</template>
-      <template v-slot:caption>Hes Academy tworzą ludzie, dla których świat sportu i rehabilitacji nie ma tajemnic.</template>
+      <template v-slot:header>{{ landing.header }}</template>
+      <template v-slot:caption>{{ landing.subheader }}</template>
     </Header>
-    <section class="mission c
-    padding: 0 1rem;olumn">
+    <section class="mission">
       <h2>Misja</h2>
       <article class="column a-center">
         <span class="flaticon-dumbbell"></span>
@@ -41,21 +40,21 @@
         <p class="mt0">Zapoznaj się z naszą bazą szkoleń on-line i wybierz ten, który najbardziej odpowiada Twoim potrzebom</p>
       </article>
       <article>
-        <span class="flaticon-payment-method"></span>
+        <span class="flaticon-ebook"></span>
         <h3 class="header--underlined">Korzystaj do woli</h3>
-        <p class="mt0">Wykup dożywotni dostęp do wybranego programu i ciesz się nim bez ograniczeń!</p>
+        <p class="mt0">Wykup dożywotni dostęp do wybranego programu i ciesz się nim bez ograniczeń - również na urządzeniach mobilnych!</p>
       </article>
-      <article>
+      <!-- <article>
         <span class="flaticon-ebook"></span>
         <h3 class="header--underlined">Oglądaj mobilnie</h3>
         <p class="mt0">Dodaj aplikację Hes Academy do ekranu głównego i ciesz się uproszczonym dostępem do zakupionych treści na urządzeniach mobilnych</p>
-      </article>
+      </article> -->
     </section>
     <section class="clients">
       <h2 class="clients-header">Zaufali nam</h2>
       <Carousel :pagination="false" autoplay>
-        <article class="column" v-for="client in clients" :key="client.id" >
-          <Client :client="client" />
+        <article class="column" v-for="opinion in opinions" :key="opinion.id" >
+          <Opinion :opinion="opinion" />
         </article>
       </Carousel>
     </section>
@@ -63,24 +62,18 @@
 </template>
 
 <script>
-  import getAllCoaches from '~/apollo/queries/getAllCoaches.gql';
-  import getAllClients from '~/apollo/queries/getAllClients.gql';
+  import getMainPage from '~/apollo/queries/getMainPage.gql';
 
   export default {
-    apollo: {
-      coaches: {
-        query: getAllCoaches, 
-      }, 
-      clients: {
-        query: getAllClients,
-      }
+    asyncData(context) {
+      let client = context.app.apolloProvider.defaultClient;
+      return client.query({ query: getMainPage })
+        .then(({ data }) => {
+          return {
+            ...data.stronaGlowna
+          }
+        });
     },
-    data() {
-      return {
-        coaches: [], 
-        clients: [],
-      }
-    }
   }
 </script>
 

@@ -1,0 +1,7 @@
+mutation($input: deleteSourceInput) {
+  deleteSource(input: $input) {
+    source {
+      id
+    }
+  }
+}
