@@ -14,6 +14,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Oswald:400,500|Roboto:100,400,500,700&display=swap' },
     ], 
     script: [
       { src: 'https://js.stripe.com/v3' }
@@ -31,7 +32,6 @@ export default {
   */
   css: [
     './assets/icons/font/flaticon.css',
-    './assets/styles/fonts.css',
     './assets/styles/main.scss',
     './assets/styles/layout.scss',
     './assets/styles/icons.css',
