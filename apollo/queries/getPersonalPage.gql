@@ -1,0 +1,6 @@
+query {
+  trenujZNami {
+    id
+    content
+  }
+}

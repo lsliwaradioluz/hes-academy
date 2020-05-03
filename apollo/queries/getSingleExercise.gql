@@ -1,0 +1,10 @@
+query getSingleExercise($id: ID!) {
+  exercise(id: $id) {
+    id
+    name
+    alias
+    description 
+    category
+    video
+  }
+}

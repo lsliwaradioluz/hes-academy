@@ -17,6 +17,7 @@ import Register from '~/components/Register';
 import UserForm from '~/components/UserForm';
 import Notification from '~/components/Notification';
 import VideoPlayer from '~/components/VideoPlayer';
+import ContactForm from '~/components/ContactForm';
 
 Vue.component('Navigation', Navigation);
 Vue.component('Program', Program);
@@ -36,6 +37,7 @@ Vue.component('Register', Register);
 Vue.component('UserForm', UserForm);
 Vue.component('Notification', Notification);
 Vue.component('VideoPlayer', VideoPlayer);
+Vue.component('ContactForm', ContactForm);
 
 
 

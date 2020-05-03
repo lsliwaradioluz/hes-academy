@@ -9,8 +9,20 @@
         <nuxt-link class="button-tertiary" :to="{ query: { cat: 'speed' } }" exact>Szybkość</nuxt-link>  
         <nuxt-link class="button-tertiary" :to="{ query: { cat: 'power' } }" exact>Moc</nuxt-link>
       </div>
-      <div>
-      </div>
+      <ul class="mt2">
+        <nuxt-link 
+          class="row mt05 mb05" 
+          tag="li" 
+          v-for="(exercise, index) in filteredExercises" 
+          :key="exercise.id"
+          :to="`exercises/${exercise.id}`">
+          <span class="number">{{ index + 1 }}</span>
+          <span class="column">
+            <h3 class="m00">{{ exercise.name }}</h3>
+            <p class="m00 fs-13">{{ exercise.alias }}</p>
+          </span>
+        </nuxt-link>
+      </ul>
     </section>
   </div>
 </template>
@@ -33,11 +45,15 @@
         return this.$route.query.cat;
       },
       filteredExercises() {
-        return this.exercises.filter(exercise => {
-          return exercise.category == this.filter;
-        });
+        if (this.filter) {
+          return this.exercises.filter(exercise => {
+            return exercise.category == this.filter;
+          });
+        } else {
+          return this.exercises;
+        }
       }, 
-    }
+    }, 
   }
 </script>
 
@@ -45,6 +61,11 @@
 <style lang="scss" scoped>
   .button-tertiary {
     padding: .5rem 1rem;
+    flex-grow: 1;
+    text-align: center;
+    &:nth-child(2) {
+      margin: 0 4px;
+    }
   }
 
   .nuxt-link-active {
@@ -54,5 +75,12 @@
 
   iframe {
     width: 100%;
+  }
+
+  li {
+    padding: 0;
+    &::before {
+      display: none;
+    }
   }
 </style>

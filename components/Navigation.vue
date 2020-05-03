@@ -31,10 +31,10 @@
     <div class="nav-links main" :class="{ 'nav-links--visible': navigationVisible }">
       <div class="column a-end">
         <nuxt-link to="/articles">Blog</nuxt-link>
-        <nuxt-link to="/exercises">Ćwiczenia</nuxt-link>
+        <nuxt-link :to="{ path: '/exercises', query: { cat: 'strength' } }">Ćwiczenia</nuxt-link>
         <nuxt-link to="/programs">Programy</nuxt-link>
         <nuxt-link to="/programs">Produkty</nuxt-link>
-        <nuxt-link to="/user">Trenuj z nami</nuxt-link>
+        <nuxt-link to="/personal">Trenuj z nami</nuxt-link>
       </div>
       <div class="column a-end">
         <nuxt-link to="/user" v-if="user">Panel</nuxt-link>

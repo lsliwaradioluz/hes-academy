@@ -32,26 +32,21 @@
       <article>
         <span class="flaticon-login"></span>
         <h3 class="header--underlined">Załóż konto</h3>
-        <p class="mt0">Dołącz do rosnącej społeczności HES Academy. Rejestracja jest darmowa i stanowi niezbędny krok na drodze do uzyskania dostępu do naszych programów</p>
+        <p class="mt0">Załóż konto za darmo, aby uzyskać dostęp do bazy ponad 100 ćwiczeń. Rejestracja stanowi niezbędny krok na drodze do uzyskania dostępu do naszych programów.</p>
       </article>
       <article>
         <span class="flaticon-book"></span>
         <h3 class="header--underlined">Znajdź swój program</h3>
-        <p class="mt0">Zapoznaj się z naszą bazą szkoleń on-line i wybierz ten, który najbardziej odpowiada Twoim potrzebom</p>
+        <p class="mt0">Zapoznaj się z naszą bazą programów on-line i wybierz ten, który najbardziej odpowiada Twoim potrzebom</p>
       </article>
       <article>
         <span class="flaticon-ebook"></span>
         <h3 class="header--underlined">Korzystaj do woli</h3>
         <p class="mt0">Wykup dożywotni dostęp do wybranego programu i ciesz się nim bez ograniczeń - również na urządzeniach mobilnych!</p>
       </article>
-      <!-- <article>
-        <span class="flaticon-ebook"></span>
-        <h3 class="header--underlined">Oglądaj mobilnie</h3>
-        <p class="mt0">Dodaj aplikację Hes Academy do ekranu głównego i ciesz się uproszczonym dostępem do zakupionych treści na urządzeniach mobilnych</p>
-      </article> -->
     </section>
     <section class="clients">
-      <h2 class="clients-header">Zaufali nam</h2>
+      <h2 class="clients-header mt0">Zaufali nam</h2>
       <Carousel :pagination="false" autoplay>
         <article class="column" v-for="opinion in opinions" :key="opinion.id" >
           <Opinion :opinion="opinion" />
@@ -112,7 +107,7 @@
   }
 
   .clients {
-    padding: 2rem 1rem;
+    padding: 0 1rem 2rem 1rem;
     h2 {
       background-color: color(primary);
       margin-left: -1rem;

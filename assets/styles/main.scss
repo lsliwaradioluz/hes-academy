@@ -115,6 +115,23 @@ p,
 li {
   font-size: 15px;
   line-height: 1.4;
+  position: relative;
+}
+
+li {
+  padding: 10px 0 0 40px;
+  &::before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 7px;
+    left: 0;
+    height: 30px;
+    width: 30px;
+    background-image: url('../images/hes-pointer.svg');
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 strong {
@@ -171,9 +188,18 @@ button {
   padding-left: 0;
   margin-bottom: 1rem;
   font-family: 'Roboto', sans-serif;
+  resize: none;
   &:focus {
     border-color: color(primary);
   }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  -webkit-transition-delay: 9999s;
+  transition-delay: 9999s;
 }
 
 // ELEMENTY 
@@ -185,6 +211,19 @@ button {
   background-position: center;
   border-radius: 50%;
   border: 2px solid color(primary);
+}
+
+.number {
+  height: 40px;
+  width: 40px;
+  background-color: color(primary);
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: .5rem;
 }
 
 .price {

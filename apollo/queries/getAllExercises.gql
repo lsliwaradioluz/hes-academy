@@ -2,10 +2,8 @@ query getAllExercises {
   exercises {
     id
     name
+    alias
     description 
     category
-    video {
-      url
-    }
   }
 }

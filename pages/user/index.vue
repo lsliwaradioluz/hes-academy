@@ -36,10 +36,11 @@
       </article>
       <article>
         <h2 class="mt2">Moje programy</h2>
-        <div class="programs">
+        <div class="programs" v-if="user.programs.length > 0">
+          <p class="mt0">Poniżej znajduje się lista wykupionych przez Ciebie programów HES Academy. Pamiętaj, że masz do nich dożywotni dostęp.</p>
           <Program v-for="program in user.programs" :program="program" :key="program.id" />
         </div>
-        <div v-if="user.programs.length == 0">
+        <div v-else>
           <p>Na razie nie wykupiłeś dostępu do żadnego z programów. </p>
           <nuxt-link class="button-tertiary" to="/programs">Napraw ten błąd</nuxt-link>
         </div>
