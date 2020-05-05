@@ -23,10 +23,9 @@
       ...mapGetters({
         items: 'cart/items', 
         user: 'auth/user',
-        programs: 'auth/programs',
       }),
       isItemPurchased() {
-        const record = this.programs.find(program => program.id === this.program.id);
+        const record = this.user.programs.find(program => program === this.program.id);
         return Boolean(record);
       },
       isItemInCart() {
@@ -37,18 +36,17 @@
         const programForCart = {
           id: this.program.id,
           name: this.program.name, 
-          description: this.program.description,
+          type: 'program',
           price: this.program.price, 
+          quantity: 1,
           image: this.program.image,
-          stripeID: this.program.stripeID,
         }
 
         return programForCart;
       }
     },
     methods: {
-      ...mapMutations({
-        emptyCart: 'cart/emptyCart', 
+      ...mapMutations({ 
         addItem: 'cart/addItem', 
         setNotification: 'utils/setNotification',
       }),
@@ -56,13 +54,6 @@
         this.addItem(this.programForCart);
         this.setNotification('Dodano produkt do koszyka');
       },
-      buyProgram() {
-        if (this.user) {
-          this.emptyCart();
-          this.addItem(this.programForCart);
-          this.$router.push('/cart/checkout');
-        }
-      }
     }
   }
 </script>

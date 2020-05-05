@@ -14,14 +14,17 @@
   import getAllArticles from '~/apollo/queries/getAllArticles.gql';
   
   export default {
-    apollo: {
-      articles: {
-        query: getAllArticles
-      }
-    }, 
+    asyncData(context) {
+      let client = context.app.apolloProvider.defaultClient;
+      return client.query({ query: getAllArticles })
+        .then(({ data }) => {
+          return {
+            articles: data.articles,        
+          }
+        });
+    },
     data() {
       return {
-        articles: [],
         filter: this.$route.query.tag, 
       }
     },

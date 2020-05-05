@@ -1,7 +1,7 @@
 <template>
   <div 
     class="carousel" 
-    v-on="isActive && active && length > 1 ? { 
+    v-on="isActive && active && numberOfPages > 1 ? { 
       touchstart: onTouchStart, 
       touchmove: onTouchMove, 
       touchend: onTouchEnd, 

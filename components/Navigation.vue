@@ -33,7 +33,7 @@
         <nuxt-link to="/articles">Blog</nuxt-link>
         <nuxt-link :to="{ path: '/exercises', query: { cat: 'strength' } }">Ćwiczenia</nuxt-link>
         <nuxt-link to="/programs">Programy</nuxt-link>
-        <nuxt-link to="/programs">Produkty</nuxt-link>
+        <nuxt-link to="/products">Sklep</nuxt-link>
         <nuxt-link to="/personal">Trenuj z nami</nuxt-link>
       </div>
       <div class="column a-end">

@@ -3,14 +3,12 @@ query getSingleUser($id: ID!) {
     id
     username
     email
-    stripeID
-    subscription
-    paymentMethod
     programs {
       id
       name
       description
       image {
+        id
         url
       }
     }

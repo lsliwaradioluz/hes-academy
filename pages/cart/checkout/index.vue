@@ -11,9 +11,7 @@
         <CartItem 
           v-for="item in items" 
           :key="item.id" 
-          :item="item" 
-          @delete="removeItem($event)"
-          :show-delete-button="false">
+          :item="item">
         </CartItem>
         <p class="checkout-price price fs-20 mb0">Razem: {{ price }}zł</p>
         <p>Przycisk "Finalizuj płatność" przeniesie Cię do formularza płatności.</p>
@@ -25,13 +23,8 @@
 
 <script>
   import { mapGetters, mapMutations } from 'vuex';
-  import createOrder from '~/apollo/mutations/createOrder.gql';  
-  import CartItem from '~/components/CartItem.vue';
 
   export default {
-    components: {
-      CartItem,
-    },
     middleware: 'redirect',
     data() {
       return {
@@ -44,6 +37,8 @@
     computed: {
       ...mapGetters({
         items: 'cart/items',
+        programs: 'cart/programs',
+        products: 'cart/products',
         price: 'cart/price',
         user: 'auth/user',
       }),
@@ -51,33 +46,28 @@
         const lineItems = [];
         this.items.forEach(item => {
           lineItems.push({
-            name: item.name, 
-            description: item.description,
+            name: item.name,
             images: [item.image.url],
             amount: item.price * 100, 
             currency: 'pln',
-            quantity: 1,
+            quantity: item.quantity,
           });
         });
 
         return lineItems;
       }, 
       metadata() {
-        const purchasedProgramsIDs = this.user.programs.map(program => {
-          return program.id;
-        });
-        const newProgramsIDs = this.items.map(item => {
-          return item.id;
-        });
-
-        const metadata = {
-          user: this.user.id, 
-          ...purchasedProgramsIDs,
-          ...newProgramsIDs,
+        let metadata;
+        if (this.programs.length > 0) {
+          const programsIDs = this.programs.map(program => program.id);
+          const allPrograms = [...programsIDs, ...this.user.programs];
+          metadata = {
+            user: this.user.id, 
+            ...allPrograms
+          }
         }
-
         return metadata;
-      }
+      },
     },
     methods: {
       ...mapMutations({
@@ -90,6 +80,7 @@
           customer: this.user.stripeID,
           payment_method_types: ['card'],
           metadata: this.metadata,
+          billing_address_collection: this.products.length > 0 ? 'required' : 'auto',
           line_items: this.lineItems,
           success_url: `http://localhost:3000/user?session_id={CHECKOUT_SESSION_ID}`,
           cancel_url: 'http://localhost:3000/cart/checkout',
@@ -101,7 +92,7 @@
           await this.stripe.redirectToCheckout({ sessionId });
         } catch (err) {
           console.log(err);
-          this.$store.commit('utils/setNotification', 'Coś poszło nie tak. Spróbuj jeszcze raz');
+          this.setNotification('Coś poszło nie tak. Spróbuj jeszcze raz');
         }
       }
     },

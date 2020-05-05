@@ -6,27 +6,6 @@
     <section class="main">
       <h2 class="mt0">Moje dane</h2>
       <article>
-        <h3>Dane płatnicze</h3>
-        <template v-if="user.paymentMethod">
-          <p>Do tego konta przypisano kartę {{ user.paymentMethod.card.brand }} kończącą się na {{ user.paymentMethod.card.last4 }}</p>
-          <button class="button-tertiary" type="button" @click="updateSubscription">Zmień kartę</button>
-        </template>
-        <template v-else>
-          <p>To konto nie ma aktywnej subskrypcji, więc nie ma przypisanej żadnej karty.</p>
-        </template>
-      </article>
-      <article>
-        <h3>Subskrypcja</h3>
-        <template v-if="!user.subscription">
-          <p>Twoja subskrypcja serwisu HES Academy jest wyłączona</p>
-          <button class="button-tertiary" type="button" @click="createSubscription">Włącz</button>
-        </template>
-        <template v-else>
-          <p>Twoja subskrypcja serwisu HES Academy jest włączona.</p>
-          <button class="button-tertiary" type="button" @click="deleteSubscription">Wyłącz</button>
-        </template>
-      </article>
-      <article>
         <h3>Dane ogólne</h3>
         <UserForm 
           :button="{ text: 'Zapisz', class: 'tertiary' }"
@@ -38,7 +17,7 @@
         <h2 class="mt2">Moje programy</h2>
         <div class="programs" v-if="user.programs.length > 0">
           <p class="mt0">Poniżej znajduje się lista wykupionych przez Ciebie programów HES Academy. Pamiętaj, że masz do nich dożywotni dostęp.</p>
-          <Program v-for="program in user.programs" :program="program" :key="program.id" />
+          <Program v-for="program in programs" :program="program" :key="program.id" />
         </div>
         <div v-else>
           <p>Na razie nie wykupiłeś dostępu do żadnego z programów. </p>
@@ -55,15 +34,18 @@
 
   export default {
     async middleware ({ store, redirect, route, app }) {
-      if (!store.getters['auth/user']) {
-        redirect('/');
-      }
-
-      if (route.query.session_id) {
-        const client = app.apolloProvider.defaultClient;
-        const response = await client.query({ query: getSingleUser, variables: { id: store.getters['auth/user'].id } });
-        store.commit('auth/setUser', response.data.user);
-        store.commit('cart/emptyCart');
+      if (!store.getters['auth/user']) redirect('/');
+      if (route.query.session_id) store.commit('cart/emptyCart');
+    },
+    async asyncData(context) {
+      let client = context.app.apolloProvider.defaultClient;
+      const res = await client.query({ query: getSingleUser, variables: { id: context.store.getters['auth/user'].id } });
+      const programs = res.data.user.programs;
+      const user = res.data.user;
+      user.programs = user.programs.map(program => program.id);
+      context.store.commit('auth/setUser', user);
+      return {
+        programs,        
       }
     },
     data() {
@@ -79,67 +61,6 @@
       },
     },
     methods: {
-      async createSubscription() {
-        const data = {
-          customer: this.user.stripeID,
-          payment_method_types: ['card'],
-          subscription_data: {
-            items: [{
-              plan: 'plan_H8x92sfsndJpvg',
-            }],
-          },
-          metadata: {
-            user: this.user.id,
-          },
-          success_url: `http://localhost:3000/user?session_id={CHECKOUT_SESSION_ID}`,
-          cancel_url: 'http://localhost:3000/user',
-        };
-        try {
-          const checkoutSession = await this.$axios.post('http://localhost:1337/users/checkout', data);
-          const sessionId = checkoutSession.data.id;
-          await this.stripe.redirectToCheckout({ sessionId });
-        } catch (err) {
-          console.log(err);
-          this.$store.commit('utils/setNotification', 'Coś poszło nie tak. Spróbuj jeszcze raz');
-        }
-      },
-      async deleteSubscription() {
-        try {
-          const response = await this.$axios.post(`http://localhost:1337/users/deletesubscription`, this.user);
-          const updatedUser = response.data;
-          this.$store.commit('auth/setUser', updatedUser);
-          this.$store.commit('utils/setNotification', 'Twoja subskrybcja została wyłączona');
-        } catch (err) {
-          console.log(err);
-          this.$store.commit('utils/setNotification', 'Coś poszło nie tak. Spróbuj jeszcze raz');
-        }
-      },
-      async updateSubscription() {
-        const data = {
-          customer: this.user.stripeID,
-          payment_method_types: ['card'],
-          mode: 'setup',
-          metadata: {
-            user: this.user.id,
-          },
-          setup_intent_data: {
-            metadata: {
-              customer_id: this.user.stripeID,
-              subscription_id: this.user.subscription.id,
-            },
-          },
-          success_url: `http://localhost:3000/user?session_id={CHECKOUT_SESSION_ID}`,
-          cancel_url: 'http://localhost:3000/user',
-        }
-        try {
-          const checkoutSession = await this.$axios.post(`http://localhost:1337/users/checkout`, data);
-          const sessionId = checkoutSession.data.id;
-          await this.stripe.redirectToCheckout({ sessionId });
-        } catch (err) {
-          console.log(err);
-          this.$store.commit('utils/setNotification', 'Coś poszło nie tak. Spróbuj jeszcze raz');
-        }
-      },
       updateUser(user) {
         this.$nuxt.$loading.start();
         const input = {

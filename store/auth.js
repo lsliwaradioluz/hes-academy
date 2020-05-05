@@ -19,23 +19,12 @@ export const mutations = {
     Cookies.set('user', null);
     await this.$apolloHelpers.onLogout();
   },
-  pushOrder(state, order) {
-    state.user.orders.push(order);
-    Cookies.set('user', state.user);
-  }, 
 }
 
 export const getters = {  
   user: (state) => {
     return state.user
   }, 
-  programs: (state) => {
-    let programs = [];
-    if (state.user) {
-      programs = state.user.programs;
-    }
-    return programs;
-  },
   showAuthentication: (state) => {
     return state.showAuthentication;
   },

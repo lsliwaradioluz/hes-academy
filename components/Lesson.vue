@@ -7,7 +7,7 @@
     :event="locked ? '' : 'click'">
     <div
       class="lesson-image avatar"
-      :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${lesson.image.url}')`}">
+      :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${img}')`}">
       <span class="lesson-lock-icon flaticon-locked-padlock t-primary fs-14" v-if="locked"></span>
     </div>
     <div class="lesson-content">
@@ -31,6 +31,10 @@
       locked: {
         type: Boolean, 
         default: () => false,
+      }, 
+      img: {
+        type: String, 
+        required: true, 
       }
     }
   }

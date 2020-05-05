@@ -1,0 +1,23 @@
+query getSingleProduct($id: ID!) {
+  product(id: $id) {
+    id
+    name
+    description 
+    price
+    available
+    images {
+      id
+      url
+    }
+  }, 
+  products(where: { id_ne: $id }) {
+    id
+    name
+    description 
+    price
+    images {
+      id
+      url
+    }
+  }
+}

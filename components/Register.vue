@@ -1,14 +1,11 @@
 <template>
   <div class="register">
-    <button class="close-button" type="button" @click="toggleShowAuthentication(false)">
-      <span class="flaticon-delete"></span>
-    </button>
+    <button class="flaticon-delete close-button" type="button" @click="toggleShowAuthentication(false)"></button>
     <h2 class="mt0">Rejestracja</h2>
     <UserForm 
       @submit="register($event)">
     </UserForm>
-    <p class="error">{{ error }}</p>
-    <button class="fs-12 t-textsecondary" type="button" @click="toggleShowAuthentication('login')">Masz już konto?</button>
+    <button class="fs-12 t-textsecondary mt1" type="button" @click="toggleShowAuthentication('login')">Masz już konto?</button>
   </div>
 </template>
 
@@ -19,7 +16,6 @@
     data() {
       return { 
         client: this.$apollo.getClient(),
-        error: ''
       }
     },
     computed: {
@@ -37,17 +33,21 @@
         })
           .then(res => {
             this.$apolloHelpers.onLogin(res.jwt, undefined, { expires: 7 });
-            this.$router.push(this.redirect ? this.redirect : '/user');
+            if (this.redirect) this.$router.push(this.redirect);
             this.toggleShowAuthentication(false);
-            this.setUser(res.user);
+            let user = res.user;
+            user.programs = user.programs.map(program => program.id);
+            this.setUser(user);
+            this.setNotification(`Zalogowano jako ${user.username}`);
           })
           .catch(err => {
-            this.error = 'Nie można zarejestrować';
+            this.setNotification('Nieprawidłowy login lub hasło');
           })
       },
       ...mapMutations({
         setUser: 'auth/setUser',
-        toggleShowAuthentication: 'auth/toggleShowAuthentication'
+        toggleShowAuthentication: 'auth/toggleShowAuthentication',
+        setNotification: 'utils/setNotification',
       })
     }, 
   }
@@ -63,16 +63,8 @@
 
   .close-button {
     position: absolute;
-    top: 2px;
-    right: 2px;
-    span {
-      font-size: 10px;
-    }
-  }
-
-  .error {
-    font-size: 11px;
-    color: red;
-    text-align: center;
+    top: 4px;
+    right: 4px;
+    font-size: 10px;
   }
 </style>

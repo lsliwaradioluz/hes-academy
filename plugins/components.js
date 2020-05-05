@@ -18,6 +18,10 @@ import UserForm from '~/components/UserForm';
 import Notification from '~/components/Notification';
 import VideoPlayer from '~/components/VideoPlayer';
 import ContactForm from '~/components/ContactForm';
+import Product from '~/components/Product';
+import ProductThumb from '~/components/ProductThumb';
+import Gallery from '~/components/Gallery';
+import CartItem from '~/components/CartItem';
 
 Vue.component('Navigation', Navigation);
 Vue.component('Program', Program);
@@ -38,6 +42,11 @@ Vue.component('UserForm', UserForm);
 Vue.component('Notification', Notification);
 Vue.component('VideoPlayer', VideoPlayer);
 Vue.component('ContactForm', ContactForm);
+Vue.component('Product', Product);
+Vue.component('ProductThumb', ProductThumb);
+Vue.component('Gallery', Gallery);
+Vue.component('CartItem', CartItem);
+
 
 
 

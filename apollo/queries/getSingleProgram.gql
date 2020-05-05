@@ -5,6 +5,7 @@ query getSingleProgram($id: ID!) {
     price
     description
     image {
+      id
       url
     }
     lessons {
@@ -12,9 +13,6 @@ query getSingleProgram($id: ID!) {
       name
       description
       video
-      image {
-        url
-      } 
     }
   }
 }

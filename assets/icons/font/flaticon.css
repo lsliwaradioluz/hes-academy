@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 21/04/2020 15:39
+  	Creation date: 04/05/2020 12:29
   	*/
 
 @font-face {
@@ -49,4 +49,5 @@ margin-left: 20px;
 .flaticon-facebook:before { content: "\f110"; }
 .flaticon-map-location:before { content: "\f111"; }
 .flaticon-shopping-cart:before { content: "\f112"; }
-.flaticon-shopping-cart-1:before { content: "\f113"; }
+.flaticon-down-chevron:before { content: "\f113"; }
+.flaticon-up-chevron:before { content: "\f114"; }

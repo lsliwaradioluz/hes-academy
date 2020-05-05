@@ -1,17 +1,14 @@
 <template>
   <div class="login">
-    <button class="close-button" type="button" @click="toggleShowAuthentication(false)">
-      <span class="flaticon-delete"></span>
-    </button>
+    <button class="flaticon-delete close-button" type="button" @click="toggleShowAuthentication(false)"></button>
     <h2 class="mt0">Logowanie</h2>
     <p>Zaloguj się do swojego konta HES Academy, aby uzyskać dostęp do zakupionych programów.</p>
     <form class="column" @submit.prevent>
       <input class="input-secondary" type="text" v-model="identifier" placeholder="Adres e-mail" :spellcheck="false" autocomplete="on">
       <input class="input-secondary" type="password" v-model="password" placeholder="Hasło" :spellcheck="false" autocomplete="on">
       <button class="button-primary" type="button" @click.prevent="signIn">Zaloguj</button>
-      <p class="error">{{ error }}</p>
     </form> 
-    <button class="fs-12 t-textsecondary" type="button" @click="toggleShowAuthentication('register')">Nie masz konta?</button>  
+    <button class="fs-12 t-textsecondary mt1" type="button" @click="toggleShowAuthentication('register')">Nie masz konta?</button>  
   </div>
 </template>
 
@@ -24,7 +21,6 @@ export default {
       identifier: '',
       revealPassword: false,
       password: '',
-      error: '', 
     }
   },
   computed: {
@@ -41,17 +37,21 @@ export default {
       })
         .then(res => {
           this.$apolloHelpers.onLogin(res.jwt, undefined, { expires: 7 })
-          this.$router.push(this.redirect ? this.redirect : '/user');
+          if (this.redirect) this.$router.push(this.redirect);
+          let user = res.user;
+          user.programs = user.programs.map(program => program.id);
           this.toggleShowAuthentication(false);
-          this.setUser(res.user);
+          this.setUser(user);
+          this.setNotification(`Zalogowano jako ${user.username}`);
         })
         .catch(err => {
-          this.error = 'Nieprawidłowy login lub hasło';
+          this.setNotification('Nieprawidłowy login lub hasło');
         })
     },
     ...mapMutations({
       setUser: 'auth/setUser',
       toggleShowAuthentication: 'auth/toggleShowAuthentication',
+      setNotification: 'utils/setNotification',
     }),
   },
 }
@@ -67,20 +67,12 @@ export default {
 
   .close-button {
     position: absolute;
-    top: 2px;
-    right: 2px;
-    span {
-      font-size: 10px;
-    }
+    top: 4px;
+    right: 4px;
+    font-size: 10px;
   }
 
   .button-primary {
     padding: .5rem 1rem;
-  }
-
-  .error {
-    font-size: 11px;
-    color: red;
-    text-align: center;
   }
 </style>

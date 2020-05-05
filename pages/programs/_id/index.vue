@@ -32,7 +32,8 @@
           v-for="(lesson, index) in program.lessons" 
           :key="lesson.id" 
           :lesson="lesson" 
-          :lesson-index="index" 
+          :lesson-index="index"
+          :img="program.image.url" 
           :locked="!isItemPurchased && index > 0">
         </Lesson>
         <p class="t-textsecondary fs-12" v-if="program.lessons.length == 0">Brak wykładów do pokazania.</p>
@@ -46,19 +47,11 @@ import getSingleProgram from '~/apollo/queries/getSingleProgram.gql';
 import { mapGetters } from 'vuex';
 
 export default {
-  data() {
+  async asyncData(context) {
+    let client = context.app.apolloProvider.defaultClient;
+    const response = await client.query({ query: getSingleProgram, variables: { id: context.route.params.id } });
     return {
-      program: {},
-    }
-  },
-  apollo: {
-    program: {
-      query: getSingleProgram, 
-      variables() {
-        return {
-          id: this.$route.params.id
-        }
-      }
+      program: response.data.program,        
     }
   },
   computed: {
@@ -66,15 +59,14 @@ export default {
       return this.$route.query.lesson;
     },
     isItemPurchased() {
-      const record = this.programs.find(program => program.id === this.program.id);
+      const record = this.user.programs.find(program => program === this.program.id);
       return Boolean(record);
     },
     query() {
       return this.$route.query
     },
     ...mapGetters({
-      items: 'cart/items', 
-      programs: 'auth/programs',
+      items: 'cart/items',
       user: 'auth/user',
     })
   },
@@ -90,6 +82,9 @@ export default {
   .program-features {
     li {
       padding: 3px 0;
+      &::before {
+        display: none;
+      }
     }
   }
 </style>

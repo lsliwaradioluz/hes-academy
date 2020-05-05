@@ -15,16 +15,15 @@
   import getAllPrograms from '~/apollo/queries/getAllPrograms.gql';
   
   export default {
-    data() {
-      return {
-        programs: [],
-      }
-    },
-    apollo: {
-      programs: {
-        query: getAllPrograms,
-      }
-    }  
+    asyncData(context) {
+      let client = context.app.apolloProvider.defaultClient;
+      return client.query({ query: getAllPrograms })
+        .then(({ data }) => {
+          return {
+            programs: data.programs,        
+          }
+        });
+    }, 
   }
 </script>
 

@@ -8,10 +8,11 @@
       <p class="mt0">Dodanie produktu do koszyka nie jest równoznaczne z finalizacją zamówienia. Przejdź do kasy, aby zapłacić za swoje zakupy.</p>
       <p class="t-textsecondary fs-12">Produktów w koszyku: {{ items.length }}</p>
       <CartItem 
-        v-for="item in items" 
+        v-for="(item, index) in items" 
         :key="item.id" 
         :item="item" 
-        @delete="removeItem($event)">
+        @remove="removeItem($event)"
+        @change-quantity="changeQuantity({ index, operation: $event})">
       </CartItem>
       <p class="cart-price price fs-24">Razem: {{ price }}zł</p>
       <button class="button-tertiary" @click="goToCheckout">Przejdź do kasy</button>
@@ -26,11 +27,9 @@
 </template>
 
 <script>
-  import CartItem from '~/components/CartItem.vue';
   import { mapGetters, mapMutations } from 'vuex';
 
   export default {
-    components: { CartItem },
     computed: {
       ...mapGetters({
         items: 'cart/items',
@@ -41,6 +40,7 @@
     methods: {
       ...mapMutations({
         removeItem: 'cart/removeItem', 
+        changeQuantity: 'cart/changeQuantity', 
         toggleShowAuthentication: 'auth/toggleShowAuthentication'
       }),
       goToCheckout() {

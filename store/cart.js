@@ -23,6 +23,15 @@ export const mutations = {
   emptyCart(state) {
     state.items = [];
     Cookies.set('cart', []);
+  },
+  changeQuantity(state, payload) {
+    const chosenItem = state.items[payload.index];
+    if (payload.operation == 'add') {
+      chosenItem.quantity++;
+    } else if (payload.operation == 'subtract' && chosenItem.quantity != 0) {
+      chosenItem.quantity--;
+    }
+    Cookies.set('cart', state.items);
   }
 }
 
@@ -30,64 +39,21 @@ export const getters = {
   items: state => {
     return state.items
   },
+  programs: state => {
+    return state.items.filter(item => {
+      return item.type == 'program';
+    });
+  },
+  products: state => {
+    return state.items.filter(item => {
+      return item.type == 'product';
+    });
+  },
   price: state => {
     const price = state.items.reduce((accumulator, item) => {
-      return accumulator + item.price;
+      return accumulator + item.price*item.quantity;
     }, 0);
 
     return price;
   },
 }
-
-// export const state = () => ({  
-//   items: []
-// });
-
-// export const mutations = {  
-//   setItems(state, items) {
-//     state.items = items
-//   },
-//   add(state, item) {
-//     const record = state.items.find(i => i.id === item.id)
-
-//     if (!record) {
-//       state.items.push({
-//         quantity: 1,
-//         ...item
-//       })
-//     } else {
-//       record.quantity++
-//     }
-//     Cookies.set('cart', state.items)
-//   },
-//   remove(state, item) {
-//     const record = state.items.find(i => i.id === item.id)
-
-//     if (record.quantity > 1) {
-//       record.quantity--
-//     } else {
-//       const index = state.items.findIndex(i => i.id === item.id)
-//       state.items.splice(index, 1)
-//     }
-//     Cookies.set('cart', state.items)
-//   },
-//   emptyCart(state) {
-//     state.items = []
-//     Cookies.set('cart', state.items)
-//   }
-// }
-
-// export const getters = {  
-//   items: state => {
-//     return state.items
-//   },
-//   price: state => {
-//     return state.items.reduce((accumulator, item) => accumulator + item.price * item.quantity, 0)
-//   },
-//   numberOfItems: state => {
-//     return state.items.reduce(
-//       (accumulator, item) => accumulator + item.quantity,
-//       0
-//     )
-//   }
-// }

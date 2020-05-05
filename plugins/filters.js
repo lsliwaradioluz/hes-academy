@@ -13,6 +13,14 @@ Vue.filter('shorten45', (value) => {
   }
 });
 
+Vue.filter('shorten20', (value) => {
+  if (value.length > 20) {
+    return `${value.slice(0, 20)}...`;
+  } else {
+    return value;
+  }
+});
+
 Vue.filter('getDate', (value) => {
   let dateWithoutTime = value.split('T');
   return dateWithoutTime[0].split('-').reverse().join('.');
