@@ -1,11 +1,11 @@
 <template>
-  <div class="program-page" v-if="!$apollo.loading">
+  <div class="program-page">
     <Header :background-url="program.image.url">
       <template v-slot:header>{{ program.name }}</template>
       <template v-slot:caption>Program</template>
     </Header>
     <main class="main" ref="top">
-      <section class="program-purchase-details" v-if="lesson == null">
+      <section class="program-purchase-details" v-if="lesson == null || isDesktop">
         <h2 class="mt0">O programie</h2>
         <p class="m00">{{ program.description }}</p>
         <h2>Zawartość</h2>
@@ -25,7 +25,11 @@
         </ul>
         <ProgramSubscriptionPanel :program="program" />
       </section>
-      <LessonDetailed :lesson="program.lessons[lesson]" :programid="program.id" v-else/>
+      <LessonDetailed 
+        :lesson="program.lessons[lesson]" 
+        :lesson-index="lesson"
+        @back="$router.push(`/programs/${program.id}`)"
+        v-if="lesson != null || isDesktop" />
       <section class="program-lessons column">
         <h2 class="mb05">Wykłady</h2>
         <Lesson 
@@ -54,9 +58,18 @@ export default {
       program: response.data.program,        
     }
   },
+  data() {
+    return {
+      isDesktop: null,
+    }
+  },
   computed: {
     lesson() {
-      return this.$route.query.lesson;
+      if (this.isDesktop) {
+        return this.$route.query.lesson ? this.$route.query.lesson : 0;
+      } else {
+        return this.$route.query.lesson;
+      }
     },
     isItemPurchased() {
       const record = this.user.programs.find(program => program === this.program.id);
@@ -74,7 +87,10 @@ export default {
     query() {
       this.$refs.top.scrollIntoView({ behavior: 'smooth' });
     }
-  }
+  },
+  mounted() {
+    this.isDesktop = window.innerWidth >= 1024;
+  } 
 }
 </script>
   

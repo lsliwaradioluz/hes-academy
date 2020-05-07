@@ -36,4 +36,11 @@
     font-size: 14px;
     margin-bottom: 0;
   }
+
+  @media (min-width: 1024px) {
+    .coach {
+      height: 500px;
+      width: 350px;
+    }
+  }
 </style>

@@ -25,7 +25,7 @@ export default {
     closeLogin() {
       this.$store.commit('auth/toggleShowAuthentication', false);
     }
-  }
+  },
 }
 </script>
 

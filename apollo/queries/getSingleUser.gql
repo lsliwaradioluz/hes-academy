@@ -3,6 +3,7 @@ query getSingleUser($id: ID!) {
     id
     username
     email
+    stripeID
     programs {
       id
       name

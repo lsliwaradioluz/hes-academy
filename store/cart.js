@@ -8,9 +8,6 @@ export const mutations = {
   setItems(state, items) {
     state.items = items;
   },
-  resetItems(state) {
-    state.items = state.deletedItems;
-  },
   addItem(state, item) {
     state.items.push(item);
     Cookies.set('cart', state.items);
@@ -22,6 +19,7 @@ export const mutations = {
   },
   emptyCart(state) {
     state.items = [];
+    console.log(1);
     Cookies.set('cart', []);
   },
   changeQuantity(state, payload) {

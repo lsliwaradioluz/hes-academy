@@ -4,8 +4,8 @@
       <template v-slot:header>Panel</template>
     </Header>
     <section class="main">
-      <h2 class="mt0">Moje dane</h2>
       <article>
+        <h2 class="mt0 header--underlined">Moje dane</h2>
         <h3>Dane ogólne</h3>
         <UserForm 
           :button="{ text: 'Zapisz', class: 'tertiary' }"
@@ -14,15 +14,23 @@
         </UserForm>
       </article>
       <article>
-        <h2 class="mt2">Moje programy</h2>
-        <div class="programs" v-if="user.programs.length > 0">
+        <h2 class="mt0 header--underlined">Moje programy</h2>
+        <template v-if="user.programs.length > 0">
           <p class="mt0">Poniżej znajduje się lista wykupionych przez Ciebie programów HES Academy. Pamiętaj, że masz do nich dożywotni dostęp.</p>
-          <Program v-for="program in programs" :program="program" :key="program.id" />
-        </div>
-        <div v-else>
-          <p>Na razie nie wykupiłeś dostępu do żadnego z programów. </p>
+          <ul class="programs">
+            <Carousel 
+              :active="[[1, false], [768, true]]"
+              :columns="[[1, 1], [768, 2]]">
+              <li v-for="program in programs" :key="program.id">
+                <Program :program="program" />
+              </li>
+            </Carousel>
+          </ul>
+        </template>
+        <template v-else>
+          <p>Na razie nie wykupiłeś dostępu do żadnego z programów.</p>
           <nuxt-link class="button-tertiary" to="/programs">Napraw ten błąd</nuxt-link>
-        </div>
+        </template>
       </article>
     </section>
   </div>
@@ -51,7 +59,6 @@
     data() {
       return {
         client: this.$apollo.getClient(),
-        showCardEdit: false,
         stripe: null,
       }
     },
@@ -91,13 +98,44 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
   article {
     margin-bottom: 2rem;
   }
 
-  .button-tertiary {
-    padding: .5rem 1rem;
+  .programs {
+    width: 100%;
+    li {
+      padding: 0;
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .programs {
+      margin-left: -1rem;
+      li {
+        padding: 1rem;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .user-page section {
+      display: flex;
+      article {
+        flex-basis: 50%;
+        &:nth-child(1) {
+          padding-right: 2rem;
+        }
+        &:nth-child(2) {
+          padding-left: 2rem;
+          border-left: 1px solid color(texttertiary);
+        }
+      }
+    }
   }
 </style>

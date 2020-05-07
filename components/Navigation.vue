@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav row j-between a-center" :class="{ 'nav--triggered': scroll > 5 && !navigationVisible }">
+  <nav class="nav row j-between a-center main pt1 pb1" :class="{ 'nav--triggered': scroll > 5 && !navigationVisible }">
     <nuxt-link to="/" class="nav-logo logo">
       <img :src="require('../assets/images/logo.svg')" alt="logo">
     </nuxt-link>
@@ -31,7 +31,7 @@
     <div class="nav-links main" :class="{ 'nav-links--visible': navigationVisible }">
       <div class="column a-end">
         <nuxt-link to="/articles">Blog</nuxt-link>
-        <nuxt-link :to="{ path: '/exercises', query: { cat: 'strength' } }">Ćwiczenia</nuxt-link>
+        <nuxt-link to="/exercises">Ćwiczenia</nuxt-link>
         <nuxt-link to="/programs">Programy</nuxt-link>
         <nuxt-link to="/products">Sklep</nuxt-link>
         <nuxt-link to="/personal">Trenuj z nami</nuxt-link>
@@ -107,7 +107,6 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1rem;
     transition: all 0.3s;
   }
 
@@ -138,7 +137,7 @@ export default {
   .nav-links {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     height: 100vh;
     background-color: white;
@@ -198,6 +197,12 @@ export default {
     }
     to {
       transform: translateX(0);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .navigation-links {
+      width: 30%;
     }
   }
 </style>

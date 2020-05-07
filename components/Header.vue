@@ -49,6 +49,7 @@
   .header {
     min-height: 100vh;
     padding: 4rem 1rem 2rem 1rem;
+    background-attachment: fixed;
     background-size: cover;
     background-position: center;
     position: relative;

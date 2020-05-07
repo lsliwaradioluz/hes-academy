@@ -1,6 +1,6 @@
 <template>
   <section class="lesson-detailed">
-    <nuxt-link tag="span" class="flaticon-left-arrow mb1 p00" type="button" :to="`/programs/${programid}`"></nuxt-link>
+    <button class="flaticon-left-arrow mb1 p00" type="button" @click="$emit('back')"></button>
     <p class="t-textsecondary m00">Wykład {{ lessonIndex + 1 }}</p>
     <h2 class="mt0">{{ lesson.name }}</h2>
     <iframe 
@@ -21,15 +21,10 @@ export default {
       type: Object, 
       required: true, 
     },
-    programid: {
-      type: String, 
-      required: true,
-    }
-  },
-  computed: {
-    lessonIndex() {
-      return +this.$route.query.lesson;
-    }
+    lessonIndex: {
+      type: Number, 
+      required: true, 
+    },
   },
 }
 </script>

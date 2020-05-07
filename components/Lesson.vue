@@ -2,7 +2,7 @@
   <nuxt-link 
     class="lesson row" 
     :class="{ locked: locked }" 
-    tag="div" 
+    tag="li" 
     :to="{ query: { lesson: lessonIndex }}"
     :event="locked ? '' : 'click'">
     <div
@@ -48,6 +48,7 @@
     color: white;
     padding: .5rem 0;
     color: black;
+    cursor: pointer;
   }
 
   .lesson-image {

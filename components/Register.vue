@@ -59,6 +59,8 @@
     background-color: white;
     padding: 1rem;
     position: relative;
+    max-width: 500px;
+    margin: 0 auto;
   }
 
   .close-button {

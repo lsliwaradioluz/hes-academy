@@ -4,7 +4,7 @@
       <h2>Im dłużej czekasz na przyszłość, tym będzie krótsza</h2>
       <a :href="`mailto:${stopka.email}`" class="button-tertiary" type="button">Skontaktuj się z nami</a>
     </div>
-    <div class="footer-content">
+    <div class="footer-content main">
       <a :href="`mailto:${stopka.email}`">
         <span class="flaticon-email"></span>
           <p>{{ stopka.email }}</p>
@@ -61,7 +61,6 @@
 
   .footer-content {
     background-color: black;
-    padding: 3rem 1rem 2rem 1rem;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -93,6 +92,10 @@
   }
 
   @media (min-width: 1024px) {
+    .footer-image {
+      padding: 8rem 1rem;
+    }
+    
     .footer-content {
       a {
         p {

@@ -1,12 +1,11 @@
 <template>
-  <nuxt-link
-    :to="`/programs/${program.id}`"
-    tag="div" 
+  <div
     class="program column j-end" 
     :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${program.image.url}')`}">
     <h3>{{ program.name }}</h3>
     <p class="m00">{{ program.description }}</p>
-  </nuxt-link>
+    <nuxt-link class="button-secondary mt05" :to="`/programs/${program.id}`">Zobacz</nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -30,6 +29,7 @@
     background-position: center;
     overflow: hidden;
     min-height: 350px;
+    width: 100%;
     margin-bottom: 1rem;
     color: white;
     padding: 1rem;
