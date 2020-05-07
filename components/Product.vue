@@ -1,12 +1,11 @@
 <template>
-  <nuxt-link
-    class="product column j-end" 
-    :to="`/products/${product.id}`"
-    tag="div"
+  <div
+    class="product column j-end a-start"
     :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${product.images[0].url}')`}">
     <h3>{{ product.name }}</h3>
     <p class="m00">{{ product.price }}zł</p>
-  </nuxt-link>
+    <nuxt-link class="button-secondary mt05" :to="`/products/${product.id}`">Zobacz</nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -26,7 +25,7 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    min-height: 250px;
+    min-height: 350px;
     margin-bottom: 1rem;
     color: white;
     padding: 1rem;

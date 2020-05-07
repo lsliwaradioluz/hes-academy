@@ -4,37 +4,9 @@
       <template v-slot:header>{{ landing.header }}</template>
       <template v-slot:caption>{{ landing.subheader }}</template>
     </Header>
-    <section class="mission main">
-      <h2>Misja</h2>
-      <div class="mission-container column">
-        <article class="column a-center">
-          <span class="flaticon-dumbbell"></span>
-          <h3 class="header--underlined">Usprawniamy</h3>
-          <p class="mt0">Usprawniamy zwykłych ludzi, oferując wszechstronny rozwój sprawności opartej na świadomości swojego ciała oraz tego, jak powinno równomiernie i prawidłowo się rozwijać.</p>
-        </article>
-        <article class="column a-center">
-          <span class="flaticon-stopwatch"></span>
-          <h3 class="header--underlined">Trenujemy</h3>
-          <p class="mt0">Trenujemy sportowców, amatorów oraz zawodowców, aby rozwijali się optymalnie i wszechstronnie, niwelowali ryzyko kontuzji oraz oczywiście podnosili swój poziom sportowy.</p>
-        </article>
-        <article class="column a-center">
-          <span class="flaticon-mind-mapping"></span>
-          <h3 class="header--underlined">Edukujemy</h3>
-          <p class="mt0">Edukujemy trenerów, zawodników jak również rodziców przekazując mieszankę najlepszych praktyk oferowanych przez najbardziej znane szkoły przygotowania motorycznego świata m.in EXOS, Crossfit HQ.</p>
-        </article>
-      </div>
-    </section>
-    <section class="coaches main pt0">
-      <h2 class="t-center">HES Academy to my</h2>
-      <Carousel :navdots-settings="{ activeColor: '#00BDFF', shape: 'round' }" :columns="[[1024, 3]]">
-        <article class="coach-container" v-for="coach in coaches" :key="coach.id"> 
-          <Coach :coach="coach"></Coach>
-        </article>
-      </Carousel>
-    </section>
-    <section class="instructions">
-      <h2 class="m00">Zainwestuj w siebie!</h2>
-      <div class="instructions-container main column">
+    <section class="instructions main">
+      <h2>Zainwestuj w siebie!</h2>
+      <div class="instructions-container column">
         <article>
           <span class="flaticon-login"></span>
           <h3 class="header--underlined">Załóż konto</h3>
@@ -52,10 +24,38 @@
         </article>
       </div>
     </section>
+    <section class="coaches main pt0">
+      <h2 class="t-center">HES Academy to my</h2>
+      <Carousel :columns="[[1, 1], [768, 2], [1024, 3]]">
+        <article class="coach-container" v-for="coach in coaches" :key="coach.id"> 
+          <Coach :coach="coach"></Coach>
+        </article>
+      </Carousel>
+    </section>
+    <section class="mission">
+      <h2 class="m00">Misja</h2>
+      <div class="mission-container main column">
+        <article class="column a-center">
+          <span class="flaticon-dumbbell"></span>
+          <h3 class="header--underlined">Usprawniamy</h3>
+          <p class="mt0">Usprawniamy zwykłych ludzi, oferując wszechstronny rozwój sprawności opartej na świadomości swojego ciała oraz tego, jak powinno równomiernie i prawidłowo się rozwijać.</p>
+        </article>
+        <article class="column a-center">
+          <span class="flaticon-stopwatch"></span>
+          <h3 class="header--underlined">Trenujemy</h3>
+          <p class="mt0">Trenujemy sportowców, amatorów oraz zawodowców, aby rozwijali się optymalnie i wszechstronnie, niwelowali ryzyko kontuzji oraz oczywiście podnosili swój poziom sportowy.</p>
+        </article>
+        <article class="column a-center">
+          <span class="flaticon-mind-mapping"></span>
+          <h3 class="header--underlined">Edukujemy</h3>
+          <p class="mt0">Edukujemy trenerów, zawodników jak również rodziców przekazując mieszankę najlepszych praktyk oferowanych przez najbardziej znane szkoły przygotowania motorycznego świata m.in EXOS, Crossfit HQ.</p>
+        </article>
+      </div>
+    </section>
     <section class="clients">
       <h2 class="m00">Zaufali nam</h2>
       <div class="main">
-        <Carousel :pagination="false" :columns="[[1024, 3]]" autoplay>
+        <Carousel :show-pagination="false" :columns="[[1, 1], [768, 2], [1024, 3]]" autoplay>
           <article class="column" v-for="opinion in opinions" :key="opinion.id" >
             <Opinion :opinion="opinion" />
           </article>
@@ -82,8 +82,8 @@
 </script>
 
 <style lang="scss" scoped>
-  
-  .mission {
+
+  .instructions {
     text-align: center;
     h2 {
       text-transform: uppercase;
@@ -98,8 +98,8 @@
       }
     }
   }
-
-  .instructions {
+  
+  .mission {
     text-align: center;
     h2 {
       background-color: color(primary);

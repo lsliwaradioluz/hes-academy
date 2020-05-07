@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery">
+  <article class="gallery mb2">
     <transition name="fade" mode="out-in">
       <div 
         class="main-image" 
@@ -9,7 +9,7 @@
     </transition>
     <Carousel :pagination="false" :columns="[[1, 3]]">
       <div 
-        class="row a-center j-center"
+        class="thumb row a-center j-center"
         :class="{ active: current == index}"
         v-for="(image, index) in images" 
         :key="image.id">
@@ -19,7 +19,7 @@
           @click="current = index">
       </div>
     </Carousel>
-  </div>
+  </article>
 </template>
 
 <script>
@@ -45,6 +45,10 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  .thumb {
+    cursor: pointer;
   }
 
   .active {

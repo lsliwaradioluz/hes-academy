@@ -3,7 +3,7 @@
     <Header background="wysilek.jpg" highlighted>
       <template v-slot:header>Programy</template>
     </Header>
-    <section class="main">
+    <section class="main column a-center">
       <article class="description">
         <h2 class="header--underlined">Cała wiedza w jednym miejscu</h2>
         <p>Zapoznaj się z bogatą ofertą programów szkoleniowych on-line. Wybierz ten, który odpowiada Twoim potrzebom. Wykup dożywotni dostęp i ciesz się nieograniczonym dostępem do wiedzy.</p>
@@ -45,22 +45,14 @@
 
 <style lang="scss" scoped>
 
-  .programs-page section {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    h2, p {
-      text-align: center;
-      max-width: 500px;
-    }
-  }
-
   .description {
-    h2 {
+    h2, p {
       margin-top: 0;
+      max-width: 500px;
+      text-align: center;
     }
+
     p {
-      margin-top: 0;
       margin-bottom: 2rem;
     }
   }

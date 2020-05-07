@@ -1,5 +1,5 @@
 <template>
-  <form submit.prevent class="column">
+  <form class="column" submit.prevent>
     <input class="input-secondary" type="email" placeholder="Adres e-mail" v-model="form.from" ref="email">
     <input class="input-secondary" type="text" :placeholder="subjectPlaceholder" v-model="form.subject">
     <textarea class="input-secondary" :placeholder="textPlaceholder" rows="5" v-model="form.text"></textarea>
@@ -57,6 +57,7 @@
       }, 
       handleSendSuccess() {
         this.$store.commit('utils/setNotification', this.successMessage);
+        this.$emit('success');
         this.form = {
           to: 'lsliwaradioluz@gmail.com', 
           from: null, 
@@ -73,7 +74,3 @@
     }
   }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

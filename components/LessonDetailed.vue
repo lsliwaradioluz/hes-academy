@@ -1,6 +1,6 @@
 <template>
   <section class="lesson-detailed">
-    <button class="flaticon-left-arrow mb1 p00" type="button" @click="$emit('back')"></button>
+    <button class="return-button flaticon-left-arrow mb1 p00" type="button" @click="$emit('back')"></button>
     <p class="t-textsecondary m00">Wykład {{ lessonIndex + 1 }}</p>
     <h2 class="mt0">{{ lesson.name }}</h2>
     <iframe 
@@ -36,5 +36,15 @@ export default {
   
   iframe {
     width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .lesson-detailed {
+      border-bottom: none;
+    }
+
+    .return-button {
+      display: none;
+    }
   }
 </style>

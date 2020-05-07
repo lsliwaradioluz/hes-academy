@@ -5,32 +5,33 @@
       <template v-slot:caption>Program</template>
     </Header>
     <main class="main" ref="top">
-      <section class="program-purchase-details" v-if="lesson == null || isDesktop">
-        <h2 class="mt0">O programie</h2>
-        <p class="m00">{{ program.description }}</p>
-        <h2>Zawartość</h2>
-        <ul class="program-features">
-          <li>
-            <span class="flaticon-login fs-15 t-primary mr05"></span>
-            {{ program.lessons.length }} wykładów w formie wideo
-          </li>
-          <li>
-            <span class="flaticon-infinity fs-15 t-primary mr05"></span>
-            Całkowity dożywotni dostęp
-          </li>
-          <li>
-            <span class="flaticon-mobile-phone fs-15 t-primary mr05"></span>
-            Dostęp na urządzeniach mobilnych
-          </li>
-        </ul>
-        <ProgramSubscriptionPanel :program="program" />
-      </section>
       <LessonDetailed 
         :lesson="program.lessons[lesson]" 
         :lesson-index="lesson"
         @back="$router.push(`/programs/${program.id}`)"
-        v-if="lesson != null || isDesktop" />
-      <section class="program-lessons column">
+        v-if="lesson != null || isDesktop">
+      </LessonDetailed>
+      <section>
+        <article v-if="lesson == null || isDesktop">
+          <h2 class="mt0">O programie</h2>
+          <p class="m00">{{ program.description }}</p>
+          <h2>Zawartość</h2>
+          <ul class="program-features">
+            <li>
+              <span class="flaticon-login fs-15 t-primary mr05"></span>
+              {{ program.lessons.length }} wykładów w formie wideo
+            </li>
+            <li>
+              <span class="flaticon-infinity fs-15 t-primary mr05"></span>
+              Całkowity dożywotni dostęp
+            </li>
+            <li>
+              <span class="flaticon-mobile-phone fs-15 t-primary mr05"></span>
+              Dostęp na urządzeniach mobilnych
+            </li>
+          </ul>
+          <ProgramSubscriptionPanel :program="program" />
+        </article>
         <h2 class="mb05">Wykłady</h2>
         <Lesson 
           v-for="(lesson, index) in program.lessons" 
@@ -100,6 +101,23 @@ export default {
       padding: 3px 0;
       &::before {
         display: none;
+      }
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    main {
+      display: flex;
+      flex-direction: row-reverse;
+      section {
+        flex-basis: 50%;
+        &:nth-child(1) {
+          padding-left: 2rem;
+          border-left: 1px solid color(texttertiary);
+        }
+        &:nth-child(2) {
+          padding-right: 2rem;
+        }
       }
     }
   }

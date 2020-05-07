@@ -1,9 +1,13 @@
 <template>
-  <div 
-    class="coach column j-end" 
-    :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.9)), url('${coach.image.url}')`}">
-    <h2>{{ coach.name }}</h2>
-    <p class="coach-text">{{ coach.description }}</p>
+  <div class="coach column a-center">
+    <div 
+      class="avatar" 
+      :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.0) 30%, rgba(0,0,0,0.9)), url('${coach.image.url}')`}">
+    </div>
+    <div class="column">
+      <h2 class="mb1">{{ coach.name }}</h2>
+      <p class="coach-text m00">{{ coach.description }}</p>
+    </div>
   </div>
 </template>
 
@@ -21,15 +25,12 @@
 <style lang="scss" scoped>
 
   .coach {
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    color: color(white);
     padding: 1rem;
   }
 
-  .coach h2 {
-    margin: 0;
+  .avatar {
+    height: 250px;
+    width: 250px;
   }
 
   .coach-text {

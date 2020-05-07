@@ -30,6 +30,8 @@
     min-height: 350px;
     color: white;
     padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
     h3 {
       margin-bottom: 0.5rem;
     }

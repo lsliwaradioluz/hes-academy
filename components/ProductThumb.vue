@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link class="product row" tag="div" :to="`/products/${product.id}`">
+  <nuxt-link class="product row" :to="`/products/${product.id}`">
     <div
       class="product-image avatar"
       :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${product.images[0].url}')`}">
@@ -39,11 +39,5 @@
     border-radius: 0;
     flex-shrink: 0;
     margin-right: 5px;
-  }
-
-  a {
-    margin-top: 1rem;
-    padding: .5rem 1rem;
-    border-radius: 0;
   }
 </style>

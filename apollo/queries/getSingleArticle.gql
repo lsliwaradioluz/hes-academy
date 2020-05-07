@@ -3,12 +3,14 @@ query getSingleArticle($id: ID!) {
     id
     title
     createdAt
+    author
+    text
     tags {
+      id
       name
     }
     image {
       url
     }
-    text
   }
 }
