@@ -1,6 +1,6 @@
 <template>
   <div class="main-page">
-    <Header background="wysilek.jpg">
+    <Header background="wysilek.jpg" big>
       <template v-slot:header>{{ landing.header }}</template>
       <template v-slot:caption>{{ landing.subheader }}</template>
     </Header>

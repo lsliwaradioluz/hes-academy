@@ -2,7 +2,7 @@
   <footer>
     <div class="footer-image column a-center j-center">
       <h2>Im dłużej czekasz na przyszłość, tym będzie krótsza</h2>
-      <a :href="`mailto:${stopka.email}`" class="button-tertiary" type="button">Skontaktuj się z nami</a>
+      <a class="button-secondary" :href="`mailto:${stopka.email}`" type="button">Skontaktuj się z nami</a>
     </div>
     <div class="footer-content main">
       <a :href="`mailto:${stopka.email}`">
@@ -52,10 +52,6 @@
       color: white;
       text-align: center;
       margin-top: 0;
-    }
-    a {
-      color: white;
-      border-color: white;
     }
   }
 
