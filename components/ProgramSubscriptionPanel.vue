@@ -1,6 +1,6 @@
 <template>
   <article>
-    <div class="column" v-if="!isItemPurchased">
+    <div class="column" v-if="!itemPurchased">
       <span class="price">{{ program.price }}zł</span>
       <p>Pierwszą lekcję możesz zobaczyć w ramach bezpłatnego dostępu. Aby zobaczyć pozostałe, wykup pełen dostęp.</p>
       <nuxt-link class="button-tertiary" tag="button" type="button" to="/cart" v-if="isItemInCart">Przejdź do koszyka</nuxt-link>
@@ -17,6 +17,10 @@
       program: {
         type: Object, 
         required: true, 
+      },
+      itemPurchased: {
+        type: Boolean, 
+        required: true, 
       }
     },
     computed: {
@@ -24,10 +28,6 @@
         items: 'cart/items', 
         user: 'auth/user',
       }),
-      isItemPurchased() {
-        const record = this.user.programs.find(program => program === this.program.id);
-        return Boolean(record);
-      },
       isItemInCart() {
         const record = this.items.find(item => item.id === this.program.id);
         return Boolean(record);

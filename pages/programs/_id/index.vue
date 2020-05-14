@@ -30,7 +30,7 @@
               Dostęp na urządzeniach mobilnych
             </li>
           </ul>
-          <ProgramSubscriptionPanel :program="program" />
+          <!-- <ProgramSubscriptionPanel :program="program" :item-purchased="itemPurchased" /> -->
         </article>
         <h2 class="mb05">Wykłady</h2>
         <Lesson 
@@ -39,7 +39,7 @@
           :lesson="lesson" 
           :lesson-index="index"
           :img="program.image.url" 
-          :locked="!isItemPurchased && index > 0">
+          :locked="index > 0 && !itemPurchased">
         </Lesson>
         <p class="t-textsecondary fs-12" v-if="program.lessons.length == 0">Brak wykładów do pokazania.</p>
       </section>
@@ -65,6 +65,10 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      items: 'cart/items',
+      user: 'auth/user',
+    }),
     lesson() {
       if (this.isDesktop) {
         return this.$route.query.lesson ? this.$route.query.lesson : 0;
@@ -72,17 +76,14 @@ export default {
         return this.$route.query.lesson;
       }
     },
-    isItemPurchased() {
+    itemPurchased() {
+      if (!this.user) return false;
       const record = this.user.programs.find(program => program === this.program.id);
-      return Boolean(record);
+      if (record) return true;
     },
     query() {
       return this.$route.query
     },
-    ...mapGetters({
-      items: 'cart/items',
-      user: 'auth/user',
-    })
   },
   watch: {
     query() {

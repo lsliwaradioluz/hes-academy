@@ -9,7 +9,7 @@
         <div class="video-wrapper">
           <iframe class="pr2" width="560" height="315" src="https://www.youtube.com/embed/WTw_g8Obhro" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <div class="header-content column j-center a-center pl2">
+        <div class="header-content column j-center a-center">
           <h1 class="header-title" :class="{ 'text--highlighted': highlighted}">
             <slot name="header"></slot>
           </h1>

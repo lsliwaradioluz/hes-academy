@@ -44,7 +44,7 @@
       </article>
       <transition name="fade">
         <ExerciseDetailed 
-          :exercise="exercises[exerciseFilter]" 
+          :exercise="filteredExercises[exerciseFilter]" 
           v-if="exerciseFilter != null">
         </ExerciseDetailed>
       </transition>

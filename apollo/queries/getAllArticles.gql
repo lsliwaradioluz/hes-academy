@@ -1,5 +1,5 @@
 query getAllArticles {
-  articles {
+  articles(sort: "createdAt:desc") {
     id
     title
     createdAt
