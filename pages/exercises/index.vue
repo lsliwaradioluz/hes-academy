@@ -28,11 +28,11 @@
         <ul class="mt2">
           <nuxt-link
             class="row mt05 mb05"
-            :class="{ active: exerciseFilter == index }"
+            :class="{ active: exerciseFilter == exercise.id }"
             tag="li"
             v-for="(exercise, index) in filteredExercises" 
             :key="exercise.id"
-            :to="{ query: { exercise: index} }">
+            :to="{ query: { exercise: exercise.id } }">
             <span class="number">{{ index + 1 }}</span>
             <span class="column">
               <h3 class="m00">{{ exercise.name }}</h3>
@@ -44,7 +44,7 @@
       </article>
       <transition name="fade">
         <ExerciseDetailed 
-          :exercise="filteredExercises[exerciseFilter]" 
+          :exercise="displayedExercise" 
           v-if="exerciseFilter != null">
         </ExerciseDetailed>
       </transition>
@@ -78,7 +78,7 @@
     computed: {
       exerciseFilter() {
         if (this.isDesktop) {
-          return this.$route.query.exercise ? this.$route.query.exercise : 0;
+          return this.$route.query.exercise ? this.$route.query.exercise : this.exercises[0].id;
         } else {
           return this.$route.query.exercise;
         }
@@ -103,7 +103,12 @@
         } else {
           return this.exercises;
         }
-      }, 
+      },
+      displayedExercise() {
+        return this.exercises.find(exercise => {
+          return exercise.id == this.exerciseFilter;
+        });
+      } 
     }, 
     mounted() {
       this.isDesktop = window.innerWidth >= 1024;
