@@ -109,6 +109,10 @@ ul {
   list-style: none;
 }
 
+ol {
+  padding-left: 1rem;
+}
+
 a {
   display: inline-block;
   color: inherit;
@@ -122,7 +126,7 @@ li {
   position: relative;
 }
 
-li {
+ul li {
   padding: 10px 0 0 40px;
   &::before {
     content: '';
@@ -143,11 +147,11 @@ strong {
 }
 
 .t-center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .t-left {
-  text-align: left;
+  text-align: left !important;
 }
 
 img {

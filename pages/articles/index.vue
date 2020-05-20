@@ -138,10 +138,8 @@
     }
 
     .article {
-      flex-basis: 48%;
-      &:nth-child(1) {
-        flex-basis: 100%;
-      }
+      flex-basis: 49%;
+      
     }
   }
 </style>

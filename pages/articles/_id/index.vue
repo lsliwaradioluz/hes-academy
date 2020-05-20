@@ -64,7 +64,7 @@
     padding-top: 1rem;
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1024px) {
     section {
       padding: 4.5rem 10% !important;
       display: flex;

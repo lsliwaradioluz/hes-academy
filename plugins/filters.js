@@ -1,21 +1,9 @@
 import Vue from 'vue';
 
-Vue.filter('shorten100', (value) => {
-  let text = value.replace("**", "");
-  return `${text.slice(0, 100)}...`;
-});
-
-Vue.filter('shorten45', (value) => {
-  if (value.length > 45) {
-    return `${value.slice(0, 45)}...`;
-  } else {
-    return value;
-  }
-});
-
-Vue.filter('shorten20', (value) => {
-  if (value.length > 20) {
-    return `${value.slice(0, 20)}...`;
+Vue.filter('shorten', (value, toLength) => {
+  if (value.length > toLength) {
+    let text = value.replace("**", "");
+    return `${text.slice(0, toLength)}...`
   } else {
     return value;
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="programs-page">
     <Header background="wysilek.jpg" highlighted>
-      <template v-slot:header>Programy</template>
+      <template v-slot:header>Szkolenia</template>
     </Header>
     <section class="main column a-center">
       <article class="description">

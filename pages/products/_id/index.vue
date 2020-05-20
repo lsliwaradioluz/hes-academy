@@ -3,9 +3,9 @@
     <Header background="wysilek.jpg" highlighted>
       <template v-slot:header>Sklep</template>
     </Header>
-    <section class="main">
+    <article class="main">
       <Gallery :images="product.images" />
-      <article class="column">
+      <section class="column">
         <h2 class="mt0">{{ product.name }}</h2>
         <span class="row j-between">
           <h3>Cena:</h3>
@@ -34,12 +34,18 @@
         </Modal>
         <h3 class="mt2 mb1">Opis produktu</h3>
         <p>{{ product.description }}</p>
+        <template v-if="product.exercises.length > 0">
+          <h3 class="mt1 mb1">Z tym sprzętem wykonasz ćwiczenia:</h3>
+          <ul>
+            <ExerciseThumb v-for="exercise in product.exercises" :key="exercise.id" :exercise="exercise" />
+          </ul>
+        </template>
         <div class="related-products column" v-if="products.length > 0">
           <h3>Zobacz także:</h3>
           <ProductThumb v-for="product in products" :key="product.id" :product="product" />
         </div>
-      </article>
-    </section>
+      </section>
+    </article>
   </div>
 </template>
 
@@ -126,13 +132,13 @@
   }
 
   @media (min-width: 1024px) {
-    section {
+    article {
       display: flex;
-      article:nth-child(1) {
+      section:nth-child(1) {
         padding-right: 2rem;
         border-right: 1px solid color(texttertiary);
       } 
-      article:nth-child(2) {
+      section:nth-child(2) {
         padding-left: 2rem;
       } 
     }

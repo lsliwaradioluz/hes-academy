@@ -4,6 +4,7 @@ query {
       id
       header
       subheader
+      video
     }
     coaches {
       id

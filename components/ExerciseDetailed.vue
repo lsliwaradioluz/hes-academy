@@ -1,17 +1,21 @@
 <template>
   <div class="exercise">
-    <section>
-      <article>
+    <article>
+      <section>
         <nuxt-link class="return-button flaticon-left-arrow p00" to="/exercises"></nuxt-link>
         <h2 class="m00">{{ exercise.name }}</h2>
         <p class="mt0 fs-14 t-textsecondary">{{ exercise.alias }}</p>
         <VideoPlayer :src="exercise.video" />
-      </article>
-      <article>
+      </section>
+      <section>
         <h2>Opis</h2>
         <p>{{ exercise.description }}</p>
-      </article>
-    </section>  
+      </section>
+      <section v-if="exercise.products.length > 0">
+        <h2>Do tego ćwiczenia przyda Ci się:</h2>
+        <ProductThumb v-for="product in exercise.products" :key="product.id" :product="product" />
+      </section>
+    </article>  
   </div>
 </template>
 

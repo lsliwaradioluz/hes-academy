@@ -1,9 +1,15 @@
 <template>
   <div class="main-page">
-    <Header background="wysilek.jpg" big>
-      <template v-slot:header>{{ landing.header }}</template>
-      <template v-slot:caption>{{ landing.subheader }}</template>
-    </Header>
+    <section class="landing">
+      <Header background="wysilek.jpg" :video="landing[currentLanding].video" :key="currentLanding" big>
+        <template v-slot:header>{{ landing[currentLanding].header }}</template>
+        <template v-slot:caption>{{ landing[currentLanding].subheader }}</template>
+      </Header>
+      <article class="landing-controls">
+        <button class="flaticon-left-chevron" type="button" :disabled="currentLanding == 0" @click="currentLanding--"></button>
+        <button class="flaticon-right-chevron" type="button" :disabled="currentLanding == landing.length - 1" @click="currentLanding++"></button>
+      </article>
+    </section>
     <section class="instructions main">
       <h2>Zainwestuj w siebie!</h2>
       <div class="instructions-container column">
@@ -78,10 +84,37 @@
           }
         });
     },
+    data() {
+      return {
+        currentLanding: 0,
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
+
+  .landing {
+    position: relative;
+  }
+
+  .landing-controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    button {
+      height: 100%;
+      color: rgba(255, 255, 255, 0.555);
+      font-size: 20px;
+    }
+    button:disabled {
+      opacity: 0.4;
+    }
+  }
 
   .instructions {
     text-align: center;
@@ -136,6 +169,11 @@
   }
 
   @media (min-width: 1024px) {
+
+    .landing-controls button {
+      font-size: 40px;
+    }
+
     .coaches {
       padding-left: 12%;
       padding-right: 12%;

@@ -1,7 +1,7 @@
 <template>
   <div class="exercises-page">
     <Header background="wysilek.jpg" highlighted>
-      <template v-slot:header>Ćwiczenia</template>
+      <template v-slot:header>Trening</template>
     </Header>
     <section class="exercises-container main">
       <article class="exercise-list" v-if="exerciseFilter == null || isDesktop">
@@ -26,19 +26,7 @@
             @click="category = 'power'">Moc</button>
         </div>
         <ul class="mt2">
-          <nuxt-link
-            class="row mt05 mb05"
-            :class="{ active: exerciseFilter == exercise.id }"
-            tag="li"
-            v-for="(exercise, index) in filteredExercises" 
-            :key="exercise.id"
-            :to="{ query: { exercise: exercise.id } }">
-            <span class="number">{{ index + 1 }}</span>
-            <span class="column">
-              <h3 class="m00">{{ exercise.name }}</h3>
-              <p class="m00 fs-13">{{ exercise.alias }}</p>
-            </span>
-          </nuxt-link>
+          <ExerciseThumb v-for="exercise in filteredExercises" :key="exercise.id" :exercise="exercise" :filter="exerciseFilter" />
           <li v-if="filteredExercises.length == 0">Brak ćwiczeń spełniających podane kryteria.</li>
         </ul>
       </article>
@@ -130,14 +118,6 @@
   .active {
     background-color: color(primary);
     color: white;
-  }
-
-  li {
-    padding: 0.5rem 0;
-    cursor: pointer;
-    &::before {
-      display: none;
-    }
   }
 
   @media (min-width: 1024px) {

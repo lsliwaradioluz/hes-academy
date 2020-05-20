@@ -5,6 +5,11 @@ query getSingleProduct($id: ID!) {
     description 
     price
     available
+    exercises {
+      id
+      name 
+      alias
+    }
     images {
       id
       url

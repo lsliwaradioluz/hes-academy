@@ -11,7 +11,7 @@
         </button>
       </div>
       <div class="item-content">
-        <nuxt-link class="m00" tag="h4" :to="`/programs/${item.id}`">{{ item.name | shorten20 }}</nuxt-link>
+        <nuxt-link class="m00" tag="h4" :to="`/programs/${item.id}`">{{ item.name | shorten(20) }}</nuxt-link>
         <p class="m00 fs-14">{{ item.price }}zł</p>
       </div>
     </div>

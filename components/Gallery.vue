@@ -1,5 +1,5 @@
 <template>
-  <article class="gallery mb2">
+  <section class="gallery mb2">
     <transition name="fade" mode="out-in">
       <div 
         class="main-image" 
@@ -19,7 +19,7 @@
           @click="current = index">
       </div>
     </Carousel>
-  </article>
+  </section>
 </template>
 
 <script>
