@@ -4,12 +4,13 @@
       <template v-slot:header>Trenuj z nami</template>
     </Header>
     <section class="main">
-      <article v-html="$md.render(content)"></article>
+      
+      <!-- <article v-html="$md.render(content)"></article>
       <article>
         <h3 class="header--underlined">Nadal się wahasz?</h3>
         <p>Odezwij się do nas i zapytaj o szczegóły. Rozwiejemy wszystkie Twoje wątpliwości!</p>
         <ContactForm />
-      </article>
+      </article> -->
     </section>
   </div>
 </template>

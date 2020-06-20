@@ -21,7 +21,7 @@ export default {
     }, 
     filter: {
       type: String,
-      default: () => false,
+      default: () => '',
     }
   }
 }

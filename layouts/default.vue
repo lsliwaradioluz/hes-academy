@@ -5,10 +5,9 @@
     <Footer />
     <!-- not in the main view -->
     <Notification />
-    <Modal :show="showAuthentication != false" @close="closeLogin" >
+    <Modal :show="showAuthentication != false" @close="closeAuthentication" >
       <transition name="slide-right" mode="out-in">
-        <Login v-if="showAuthentication == 'login'" />
-        <Register v-if="showAuthentication == 'register'" />
+        <Authentication />
       </transition>
     </Modal>
   </div>
@@ -22,8 +21,8 @@ export default {
     },
   },
   methods: {
-    closeLogin() {
-      this.$store.commit('auth/toggleShowAuthentication', false);
+    closeAuthentication() {
+      this.$store.commit('auth/toggleShowAuthentication');
     }
   },
 }

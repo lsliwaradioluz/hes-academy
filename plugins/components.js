@@ -12,8 +12,7 @@ import Coach from '~/components/Coach';
 import Opinion from '~/components/Opinion';
 import Footer from '~/components/Footer';
 import Modal from '~/components/Modal';
-import Login from '~/components/Login';
-import Register from '~/components/Register';
+import Authentication from '~/components/Authentication';
 import UserForm from '~/components/UserForm';
 import Notification from '~/components/Notification';
 import VideoPlayer from '~/components/VideoPlayer';
@@ -23,6 +22,7 @@ import ProductThumb from '~/components/ProductThumb';
 import Gallery from '~/components/Gallery';
 import CartItem from '~/components/CartItem';
 import ExerciseThumb from '~/components/ExerciseThumb';
+import SearchInput from '~/components/SearchInput';
 
 Vue.component('Navigation', Navigation);
 Vue.component('Program', Program);
@@ -37,8 +37,7 @@ Vue.component('Coach', Coach);
 Vue.component('Opinion', Opinion);
 Vue.component('Footer', Footer);
 Vue.component('Modal', Modal);
-Vue.component('Login', Login);
-Vue.component('Register', Register);
+Vue.component('Authentication', Authentication);
 Vue.component('UserForm', UserForm);
 Vue.component('Notification', Notification);
 Vue.component('VideoPlayer', VideoPlayer);
@@ -48,6 +47,7 @@ Vue.component('ProductThumb', ProductThumb);
 Vue.component('Gallery', Gallery);
 Vue.component('CartItem', CartItem);
 Vue.component('ExerciseThumb', ExerciseThumb);
+Vue.component('SearchInput', SearchInput);
 
 
 

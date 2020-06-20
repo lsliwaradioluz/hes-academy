@@ -1,11 +1,12 @@
 <template>
-  <div
-    class="program column j-end" 
-    :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${program.image.url}')`}">
-    <h3>{{ program.name }}</h3>
-    <p class="m00">{{ program.description }}</p>
-    <nuxt-link class="button-secondary mt05" :to="`/programs/${program.id}`">Zobacz</nuxt-link>
-  </div>
+  <nuxt-link
+    class="program tab"
+    :to="`/programs/${program.id}`" 
+    tag="li"
+    :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${program.image.url}')`}">
+    <h3 class="program__name">{{ program.name }}</h3>
+    <p class="program__description">{{ program.description | shorten(120) }}</p>
+  </nuxt-link>
 </template>
 
 <script>
@@ -23,18 +24,20 @@
 </script>
 
 <style lang="scss" scoped>
-  .program {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    min-height: 350px;
-    width: 100%;
-    margin-bottom: 1rem;
-    color: white;
-    padding: 1rem;
-    h3 {
-      margin-bottom: 0.5rem;
+
+  .program__name {
+    font-size: 22px;
+    margin-bottom: .5rem;
+  }
+
+  .program__description {
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  @media (min-width: 1024px) {
+    .program__name {
+      font-size: 24px;
     }
   }
 </style>

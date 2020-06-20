@@ -7,8 +7,8 @@ export const state = () => ({
 });
 
 export const mutations = {
-  toggleShowAuthentication(state, payload) {
-    state.showAuthentication = payload;
+  toggleShowAuthentication(state) {
+    state.showAuthentication = !state.showAuthentication;
   },
   setUser(state, user) {
     state.user = user;

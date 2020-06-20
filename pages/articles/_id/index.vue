@@ -9,7 +9,7 @@
         <p class="t-textsecondary fs-12">Dodano {{ article.createdAt | getDate }}</p>
         <div class="article-tags row">
           <nuxt-link 
-            class="button-primary" 
+            class="article-tag" 
             v-for="tag in article.tags" 
             :key="tag.id" 
             :to="{ path: '/articles', query: { tag: tag.name }}">
@@ -35,7 +35,6 @@
       let client = context.app.apolloProvider.defaultClient;
       const article = await client.query({ query: getSingleArticle, variables: { id: context.route.params.id } });
       const articles = await client.query({ query: getAllArticles, variables: { limit: 3 } });
-      console.log(articles);
       return {
         article: article.data.article, 
         articles: articles.data.articles, 
@@ -47,13 +46,6 @@
 <style lang="scss" scoped>
   .article-tags {
     flex-wrap: wrap;
-    a {
-      font-size: 12px;
-      padding: 8px;
-      border-radius: 0;
-      margin-right: .5rem;
-      margin-bottom: .5rem;
-    }
   }
 
   .content {

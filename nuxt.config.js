@@ -41,7 +41,7 @@ export default {
   */
   plugins: [
     './plugins/components.js',
-    './plugins/filters.js',
+    './plugins/utilities.js',
   ],
   /*
   ** Nuxt.js dev-modules

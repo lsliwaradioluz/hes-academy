@@ -69,21 +69,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 3rem;
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 2rem;
   margin-top: 1rem;
 }
 
 h3 {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   margin-top: 0;
 }
 
 h4 {
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 .header--underlined {
@@ -170,7 +170,8 @@ button {
 
 .button-primary, 
 .button-secondary, 
-.button-tertiary {
+.button-tertiary,
+.article-tag {
   background-color: color(primary);
   color: color(white);
   padding: 0.5rem 1rem;
@@ -179,6 +180,7 @@ button {
   border: 2px solid color(primary);
   transition: all .3s;
   text-align: center;
+  border-radius: 30px;
   &:disabled {
     opacity: 0.3;
   }
@@ -195,7 +197,7 @@ button {
   &:hover, 
   &:active {
     background-color: white;
-    color: black;
+    color: color(primary);
   }
 }
 
@@ -208,6 +210,14 @@ button {
     background-color: color(primary);
     color: white;
   }
+}
+
+.article-tag {
+  font-size: 12px;
+  padding: 8px;
+  border-radius: 0;
+  margin-right: .5rem;
+  margin-bottom: .5rem;
 }
 
 .input-secondary {
@@ -263,14 +273,41 @@ input:-webkit-autofill:active  {
   font-family: 'Oswald', sans-serif;
 }
 
+.tab {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  min-height: 350px;
+  width: 100%;
+  margin-bottom: 1rem;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-end;
+  cursor: pointer;
+  &::before {
+    display: none;
+  }
+}
+
+// MEDIA QUERIES
+
+  @media(min-width: 1024px) {
+    .tab {
+      width: 32%;
+    }
+  }
+
 // ANIMATIONS 
 
 .fade-enter-active {
-  animation: fade-in 0.4s;
+  animation: fade-in .3s;
 }
 
 .fade-leave-active {
-  animation: fade-in 0.4s reverse;
+  animation: fade-in .3s reverse;
 }
 
 @keyframes fade-in {

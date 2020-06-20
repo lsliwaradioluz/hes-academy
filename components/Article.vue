@@ -1,12 +1,12 @@
 <template>
   <nuxt-link
+    class="article tab" 
     :to="`/articles/${article.id}`"
-    tag="div" 
-    class="article column j-end" 
-    :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 10%, rgba(0,0,0,0.9)), url('${article.image.url}')`}">
-    <p class="article-date m00 fs-12">{{ article.createdAt | getDate }}</p>
-    <h3>{{ article.title }}</h3>
-    <p class="m00">{{ article.text | shorten(100) }}</p>
+    tag="li"
+    :style="{ backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${article.image.url}')`}">
+    <h3 class="article__title">{{ article.title }}</h3>
+    <p class="article__text">{{ article.text | shorten(120) }}</p>
+    <p class="article__date">{{ article.createdAt | getDate }}</p>
   </nuxt-link>
 </template>
 
@@ -22,22 +22,18 @@
 </script>
 
 <style lang="scss" scoped>
-  .article {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    min-height: 350px;
-    color: white;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-    h3 {
-      margin-bottom: 0.5rem;
-    }
+
+  .article__title {
+    margin-bottom: .5rem;
+    font-size: 22px;
   }
 
-  .article-date {
+  .article__text {
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .article__date {
     position: absolute;
     top: 0;
     left: 0;
@@ -45,7 +41,15 @@
     background-color: color(primary);
     color: white;
     padding: 2px;
+    margin: 0;
     width: 140px;
     text-align: center;
+    font-size: 12px;
+  }
+
+  @media (min-width: 1024px) {
+    .article__title {
+      font-size: 24px;
+    }
   }
 </style>

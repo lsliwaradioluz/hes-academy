@@ -1,8 +1,12 @@
 <template>
-  <nav class="nav row j-between a-center main pt1 pb1" :class="{ 'nav--triggered': scroll > 5 && !navigationVisible }">
+  <nav class="nav main" :class="{ 'nav--triggered': scroll > 5 && !navigationVisible || showSearch }">
     <nuxt-link to="/" class="nav-logo logo">
       <img :src="require('../assets/images/logo.svg')" alt="logo">
     </nuxt-link>
+    <!-- <transition name="fade"> -->
+      <SearchInput class="nav__search" v-show="showSearch" @search="showSearch = false" />
+    <!-- </transition> -->
+    <button class="flaticon-search mr05" type="button" @click="showSearch = !showSearch"></button>
     <div class="nav-icons">
       <transition name="fade">
         <nuxt-link to="/cart" v-if="items.length > 0">
@@ -13,25 +17,25 @@
       </transition>
       <transition name="slide-right" mode="out-in">
         <button 
+          class="flaticon-bars"
           key="open"
           type="button" 
           @click="toggleNavigation" 
           v-if="!navigationVisible">
-          <span class="flaticon-bars"></span>
         </button>
         <button 
+          class="flaticon-delete"
           key="close" 
           type="button" 
           @click="toggleNavigation" 
           v-else>
-          <span class="flaticon-delete"></span>
         </button>
       </transition>
     </div>
     <div class="nav-links main" :class="{ 'nav-links--visible': navigationVisible }">
       <div class="column a-end">
         <nuxt-link to="/articles">Blog</nuxt-link>
-        <nuxt-link to="/exercises">Trening</nuxt-link>
+        <nuxt-link to="/exercises">Ćwiczenia</nuxt-link>
         <nuxt-link to="/programs">Szkolenia</nuxt-link>
         <nuxt-link to="/products">Sklep</nuxt-link>
         <nuxt-link to="/personal">Trenuj z nami</nuxt-link>
@@ -39,8 +43,7 @@
       <div class="column a-end">
         <nuxt-link to="/user" v-if="user">Panel</nuxt-link>
         <template v-if="!user">
-          <button type="button" @click="openLogin">Logowanie</button>
-          <button type="button" @click="openRegister">Rejestracja</button>
+          <button type="button" @click="openAuthentication">Logowanie</button>
         </template>
         <button type="button" @click="logout" v-else>Wyloguj</button>
         <p class="fs-12 t-texttertiary mt0" v-if="user">Zalogowano jako {{ user.username }}</p>
@@ -55,6 +58,7 @@ export default {
     return {
       navigationVisible: false,
       scroll: 0,
+      showSearch: false,
     }
   },
   computed: {
@@ -74,12 +78,8 @@ export default {
     }
   },
   methods: {
-    openLogin() {
-      this.$store.commit('auth/toggleShowAuthentication', 'login');
-      this.navigationVisible = false;
-    },
-    openRegister() {
-      this.$store.commit('auth/toggleShowAuthentication', 'register');
+    openAuthentication() {
+      this.$store.commit('auth/toggleShowAuthentication');
       this.navigationVisible = false;
     },
     logout() {
@@ -108,30 +108,43 @@ export default {
     left: 0;
     width: 100%;
     transition: all 0.3s;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    button {
+      padding: 0;
+      color: color(primary);
+      font-size: 24px;
+    }
   }
 
   .nav--triggered {
     background-color: color(white);
-    box-shadow: 0 1px 10px 3px rgba(0,0,0,.2);
+    box-shadow: 0 1px 10px 3px rgba(0,0,0,.2);    
     .nav-logo {
       width: 125px;
     }
+  }
+
+  .nav__search {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
   }
 
   .nav-logo {
     width: 150px;
     z-index: 2;
     transition: width .3s;
+    margin-right: auto;
   }
 
   .nav-icons {
     z-index: 2;
-    button {
-      padding: 0;
-    }
-    span {
-      color: color(primary);
-    }
   }
 
   .nav-links {
@@ -201,6 +214,22 @@ export default {
   }
 
   @media (min-width: 1024px) {
+    .nav {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    .nav--triggered {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .nav__search {
+      position: static;
+      width: auto;
+      background-color: initial;
+    }
+
     .navigation-links {
       width: 30%;
     }

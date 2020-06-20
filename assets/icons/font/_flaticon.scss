@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 15/05/2020 14:39
+    Creation date: 20/06/2020 08:22
     */
 
     @font-face {
@@ -51,15 +51,17 @@
 .flaticon-infinity:before { content: "\f10b"; }
 .flaticon-locked-padlock:before { content: "\f10c"; }
 .flaticon-mobile-phone:before { content: "\f10d"; }
-.flaticon-email:before { content: "\f10e"; }
-.flaticon-phone-call:before { content: "\f10f"; }
-.flaticon-facebook:before { content: "\f110"; }
-.flaticon-map-location:before { content: "\f111"; }
-.flaticon-shopping-cart:before { content: "\f112"; }
-.flaticon-down-chevron:before { content: "\f113"; }
-.flaticon-up-chevron:before { content: "\f114"; }
-.flaticon-left-chevron:before { content: "\f115"; }
-.flaticon-right-chevron:before { content: "\f116"; }
+.flaticon-shopping-cart:before { content: "\f10e"; }
+.flaticon-down-chevron:before { content: "\f10f"; }
+.flaticon-up-chevron:before { content: "\f110"; }
+.flaticon-left-chevron:before { content: "\f111"; }
+.flaticon-right-chevron:before { content: "\f112"; }
+.flaticon-email:before { content: "\f113"; }
+.flaticon-map:before { content: "\f114"; }
+.flaticon-telephone:before { content: "\f115"; }
+.flaticon-facebook:before { content: "\f116"; }
+.flaticon-instagram:before { content: "\f117"; }
+.flaticon-search:before { content: "\f118"; }
     
     $font-Flaticon-mouse: "\f100";
     $font-Flaticon-login: "\f101";
@@ -75,12 +77,14 @@
     $font-Flaticon-infinity: "\f10b";
     $font-Flaticon-locked-padlock: "\f10c";
     $font-Flaticon-mobile-phone: "\f10d";
-    $font-Flaticon-email: "\f10e";
-    $font-Flaticon-phone-call: "\f10f";
-    $font-Flaticon-facebook: "\f110";
-    $font-Flaticon-map-location: "\f111";
-    $font-Flaticon-shopping-cart: "\f112";
-    $font-Flaticon-down-chevron: "\f113";
-    $font-Flaticon-up-chevron: "\f114";
-    $font-Flaticon-left-chevron: "\f115";
-    $font-Flaticon-right-chevron: "\f116";
+    $font-Flaticon-shopping-cart: "\f10e";
+    $font-Flaticon-down-chevron: "\f10f";
+    $font-Flaticon-up-chevron: "\f110";
+    $font-Flaticon-left-chevron: "\f111";
+    $font-Flaticon-right-chevron: "\f112";
+    $font-Flaticon-email: "\f113";
+    $font-Flaticon-map: "\f114";
+    $font-Flaticon-telephone: "\f115";
+    $font-Flaticon-facebook: "\f116";
+    $font-Flaticon-instagram: "\f117";
+    $font-Flaticon-search: "\f118";

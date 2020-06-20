@@ -1,22 +1,19 @@
 <template>
   <header 
-    class="header main row j-center" 
-    :class="{ 'header--big': big }"
+    class="header main row j-center"
     :style="{ backgroundImage: backgroundImage }">
     <div class="fade"></div>
-    <transition name="slide-up" appear> 
-      <div class="content column j-center" :class="{ 't-left': video }">
-        <div class="column j-center" :class="{ 'a-center': !video }">
-          <h1 class="content-title" :class="{ 'text--highlighted': highlighted}">
-            <slot name="header"></slot>
-          </h1>
-          <p class="content-text">
-            <slot name="caption"></slot>
-          </p>
-          <button class="header-button" type="button" @click="scrollToBottom"><span class="flaticon-mouse fs-40 t-white" v-if="!video"></span></button>
-        </div>
-        <iframe height="315" :src="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen v-if="video"></iframe>
-      </div> 
+    <transition name="slide-up" appear>
+      <div class="content">
+        <h1 class="content-title" :class="{ 'text--highlighted': highlighted}">
+          <slot name="header"></slot>
+        </h1>
+        <p class="content-text">
+          <slot name="caption"></slot>
+        </p>
+        <button class="header-button" type="button" @click="scrollToBottom"><span class="flaticon-mouse fs-40 t-white"></span></button>
+      </div>
+        <!-- <iframe height="315" :src="video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen v-if="video"></iframe> -->
     </transition>
     <div class="header-target" ref="target"></div>
   </header>
@@ -34,14 +31,7 @@
       highlighted: {
         type: Boolean, 
         default: () => false,
-      }, 
-      big: {
-        type: Boolean, 
-        default: () => false, 
-      }, 
-      video: {
-        type: String, 
-      }
+      },
     },
     computed: {
       backgroundImage() {
@@ -70,10 +60,6 @@
     color: white;
   }
 
-  .header--big {
-    min-height: 100vh;
-  }
-
   .fade {
     z-index: 0;
     position: absolute;
@@ -88,6 +74,10 @@
     z-index: 1;
     width: 100%;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   iframe {
@@ -127,10 +117,6 @@
   }
 
   @media (min-width: 1024px) {
-    .content {
-      flex-direction: row;
-      align-items: center;
-    }
 
     .content-title {
       font-size: 54px;

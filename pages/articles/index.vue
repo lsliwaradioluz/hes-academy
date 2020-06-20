@@ -10,12 +10,12 @@
         class="tags row"
         :class="{ 'tags--visible': tagsVisible }">
         <nuxt-link 
-          class="button-tertiary"
+          class="button-tertiary article-tag"
           :to="{ path: '/articles' }">
           WSZYSTKIE
         </nuxt-link>
         <nuxt-link 
-          class="button-primary" 
+          class="article-tag" 
           v-for="tag in tags" 
           :key="tag.id" 
           :to="{ path: '/articles', query: { tag: tag.name }}">

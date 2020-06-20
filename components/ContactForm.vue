@@ -1,6 +1,6 @@
 <template>
   <form class="column" submit.prevent>
-    <input class="input-secondary" type="email" placeholder="Adres e-mail" v-model="form.from" ref="email">
+    <input class="input-secondary" type="email" placeholder="Twój adres e-mail" v-model="form.from" ref="email">
     <input class="input-secondary" type="text" :placeholder="subjectPlaceholder" v-model="form.subject">
     <textarea class="input-secondary" :placeholder="textPlaceholder" rows="5" v-model="form.text"></textarea>
     <button class="button-primary pt05 pb05" type="button" @click.prevent="send">Wyślij</button>
@@ -51,7 +51,6 @@
           await this.$axios.$post(endpoint, this.form); 
           this.handleSendSuccess();
         } catch (err) {
-          console.log(err);
           this.handleSendFailure();
         }
       }, 
