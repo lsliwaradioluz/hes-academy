@@ -39,7 +39,6 @@
     h2, p {
       margin-top: 0;
       max-width: 500px;
-      text-align: center;
     }
   }
 
@@ -48,6 +47,10 @@
   }
 
   @media (min-width: 1024px) {
+    .description {
+      text-align: center;
+    }
+
     .products {
       display: flex;
       flex-wrap: wrap;

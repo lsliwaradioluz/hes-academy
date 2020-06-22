@@ -42,7 +42,6 @@
     h2, p {
       margin-top: 0;
       max-width: 500px;
-      text-align: center;
     }
 
     p {
@@ -55,6 +54,10 @@
   }
 
   @media (min-width: 768px) {
+    .description {
+      text-align: center;
+    }
+    
     .programs {
       display: flex;
       justify-content: center;
