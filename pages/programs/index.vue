@@ -9,14 +9,7 @@
         <p>Zapoznaj się z bogatą ofertą programów szkoleniowych on-line. Wybierz ten, który odpowiada Twoim potrzebom. Wykup dożywotni dostęp i ciesz się nieograniczonym dostępem do wiedzy.</p>
       </article>
       <ul class="programs">
-        <Carousel 
-          :active="[[1, false], [768, true]]"
-          :columns="[[1, 1], [768, 2], [1024, 3]]"
-          >
-          <li v-for="program in programs" :key="program.id">
-            <Program :program="program" />
-          </li>
-        </Carousel>
+        <Program v-for="program in programs" :key="program.id" :program="program" />
       </ul>
     </section>
   </div>
@@ -59,19 +52,17 @@
 
   .programs {
     width: 100%;
-    li {
-      padding: 0;
-      &::before {
-        display: none;
-      }
-    }
   }
 
   @media (min-width: 768px) {
     .programs {
-      li {
-        padding: 1rem;
-      }
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .program {
+      margin: 1rem;
     }
   }
 </style>
