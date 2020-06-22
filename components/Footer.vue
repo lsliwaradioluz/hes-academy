@@ -148,9 +148,9 @@ export default {
   justify-content: center;
   font-size: 40px;
   padding: 1.5rem 0;
-  transition: transform 0.3s;
+  transition: opacity 0.3s;
   &:hover {
-    transform: scale(1.03);
+    opacity: .7;
   }
 }
 

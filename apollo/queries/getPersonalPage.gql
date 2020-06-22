@@ -1,6 +1,11 @@
 query {
   trenujZNami {
     id
-    content
+    introduction
+    partnerships {
+      id
+      name 
+      description
+    }
   }
 }

@@ -36,16 +36,7 @@
     background-position: center;
     background-size: cover;
     position: relative;
-    &::before {
-      z-index: -1;
-      content: "";
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      background-color: color(primary);
-      width: 100%;
-      height: 100%;
-    }
+    box-shadow: 5px 5px 0 color(primary);
   }
 
   .coach-header {
