@@ -100,7 +100,7 @@ export default {
       flex-shrink: 0;
       margin-left: 2rem;
       position: sticky;
-      top: 4rem;
+      top: 6rem;
       padding: 1.5rem 1.5rem 2.5rem 1.5rem;
     }
 

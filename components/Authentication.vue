@@ -27,7 +27,7 @@
         </p>
         <form class="column" @submit.prevent>
           <input
-            class="input-secondary"
+            class="input-primary"
             type="text"
             v-model="identifier"
             placeholder="Adres e-mail"
@@ -35,7 +35,7 @@
             autocomplete="on"
           />
           <input
-            class="input-secondary"
+            class="input-primary"
             type="password"
             v-model="password"
             placeholder="Hasło"

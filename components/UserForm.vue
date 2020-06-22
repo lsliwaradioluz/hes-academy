@@ -1,28 +1,28 @@
 <template>
   <form class="column" @submit.prevent>
     <input 
-      class="input-secondary"
+      class="input-primary"
       v-model="newUser.username" 
       placeholder="Imię i nazwisko"
       type="text"
       :spellcheck="false"
       autocomplete="on">
     <input 
-      class="input-secondary"
+      class="input-primary"
       v-model="newUser.email" 
       placeholder="Adres e-mail"
       type="email"
       :spellcheck="false"
       autocomplete="on">
     <input 
-      class="input-secondary"
+      class="input-primary"
       v-model="newUser.password" 
       :placeholder="user ? 'Nowe hasło' : 'Hasło'"
       type="password"
       :spellcheck="false"
       autocomplete="on">
     <input
-      class="input-secondary"
+      class="input-primary"
       v-model="newUser.repeatPassword" 
       placeholder="Powtórz hasło"
       type="password"
