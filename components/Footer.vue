@@ -95,9 +95,10 @@ export default {
   padding: 5rem 1rem;
   background-attachment: fixed;
   background-size: cover;
+  background-position: center;
   background-image: linear-gradient(
-      rgba(0, 189, 255, 0.4),
-      rgba(0, 189, 255, 0.4)
+      rgba(0, 189, 255, 0.5),
+      rgba(0, 189, 255, 0.5)
     ),
     url("../assets/images/przyszlosc.jpg");
 }
@@ -173,12 +174,15 @@ export default {
 @media (min-width: 1024px) {
   .footer__image {
     padding: 8rem 1rem;
-    font-size: 26px;
+  }
+
+  .footer__image__title {
+    font-size: 40px;
   }
 
   .footer__image__button {
     padding: 1rem 3rem;
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .footer__links {
