@@ -115,16 +115,7 @@ export default {
 .player {
   position: relative;
   width: 100%;
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 3rem;
-    width: 100%;
-    background-color: black;
-    z-index: 3;
-  }
+  padding: 2rem 0;
 }
 
 iframe {
@@ -199,10 +190,6 @@ iframe {
 
   .content-text {
     font-size: 16px;
-  }
-
-  .player::after {
-    display: none;
   }
 }
 

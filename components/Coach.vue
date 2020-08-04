@@ -28,11 +28,13 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    max-width: 350px;
   }
 
   .coach__avatar {
     height: 450px;
-    width: 250px;
+    width: 100%;
     background-position: center;
     background-size: cover;
     position: relative;
@@ -41,10 +43,12 @@
 
   .coach-header {
     margin-bottom: 1rem;
+    text-align: center;
   }
 
   .coach-text {
     font-size: 14px;
     margin: 0;
+    text-align: justify;
   }
 </style>

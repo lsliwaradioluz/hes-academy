@@ -102,6 +102,11 @@
   //   }
   // }
 
+  .coach-container {
+    display: flex;
+    justify-content: center;
+  }
+
   .coaches__title,
   .mission__title,
   .clients__title {
@@ -138,11 +143,6 @@
 
     .landing-controls button {
       font-size: 40px;
-    }
-
-    .coach-container {
-      display: flex;
-      justify-content: center;
     }
 
     .mission-container, 
