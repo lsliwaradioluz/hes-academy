@@ -26,8 +26,18 @@
     <section class="coaches">
       <h2 class="coaches__title">HES Academy to my</h2>
       <div class="coaches__container main">
-        <Carousel :columns="[[1, 1], [768, 2], [1024, 3]]">
-          <article class="coach-container" v-for="coach in coaches" :key="coach.id"> 
+        <Carousel
+          :columns="[
+            [1, 1],
+            [768, 2],
+            [1024, 3]
+          ]"
+        >
+          <article
+            class="coach-container"
+            v-for="coach in coaches"
+            :key="coach.id"
+          >
             <Coach :coach="coach"></Coach>
           </article>
         </Carousel>
@@ -39,119 +49,132 @@
         <article class="column a-center">
           <span class="flaticon-dumbbell"></span>
           <h3 class="header--underlined">Usprawniamy</h3>
-          <p class="mt0">Usprawniamy zwykłych ludzi, oferując wszechstronny rozwój sprawności opartej na świadomości swojego ciała oraz tego, jak powinno równomiernie i prawidłowo się rozwijać.</p>
+          <p class="mt0">
+            Usprawniamy zwykłych ludzi, oferując wszechstronny rozwój sprawności
+            opartej na świadomości swojego ciała oraz tego, jak powinno
+            równomiernie i prawidłowo się rozwijać.
+          </p>
         </article>
         <article class="column a-center">
           <span class="flaticon-stopwatch"></span>
           <h3 class="header--underlined">Trenujemy</h3>
-          <p class="mt0">Trenujemy sportowców, amatorów oraz zawodowców, aby rozwijali się optymalnie i wszechstronnie, niwelowali ryzyko kontuzji oraz oczywiście podnosili swój poziom sportowy.</p>
+          <p class="mt0">
+            Trenujemy sportowców, amatorów oraz zawodowców, aby rozwijali się
+            optymalnie i wszechstronnie, niwelowali ryzyko kontuzji oraz
+            oczywiście podnosili swój poziom sportowy.
+          </p>
         </article>
         <article class="column a-center">
           <span class="flaticon-mind-mapping"></span>
           <h3 class="header--underlined">Edukujemy</h3>
-          <p class="mt0">Edukujemy trenerów, zawodników jak również rodziców przekazując mieszankę najlepszych praktyk oferowanych przez najbardziej znane szkoły przygotowania motorycznego świata m.in EXOS, Crossfit HQ.</p>
+          <p class="mt0">
+            Edukujemy trenerów, zawodników jak również rodziców przekazując
+            mieszankę najlepszych praktyk oferowanych przez najbardziej znane
+            szkoły przygotowania motorycznego świata m.in EXOS, Crossfit HQ.
+          </p>
         </article>
       </div>
     </section>
     <section class="clients">
       <h2 class="clients__title">Zaufali nam</h2>
-      <div class="main">
-        <Carousel :show-pagination="false" :columns="[[1, 1], [768, 2], [1024, 3]]" autoplay>
-          <article class="column" v-for="opinion in opinions" :key="opinion.id" >
-            <Opinion :opinion="opinion" />
-          </article>
-        </Carousel>
-      </div>
+      <article class="clients__images main">
+        <div
+          class="clients__image"
+          v-for="opinion in opinions"
+          :key="opinion.id"
+        >
+          <img :src="opinion.image.url" :alt="opinion.name" />
+        </div>
+      </article>
     </section>
   </div>
 </template>
 
 <script>
-  import MainHeader from '~/components/MainHeader'
-  import getMainPage from '~/apollo/queries/getMainPage.gql';
+import MainHeader from "~/components/MainHeader";
+import getMainPage from "~/apollo/queries/getMainPage.gql";
 
-  export default {
-    components: { MainHeader },
-    asyncData(context) {
-      let client = context.app.apolloProvider.defaultClient;
-      return client.query({ query: getMainPage })
-        .then(({ data }) => {
-          return {
-            ...data.stronaGlowna
-          }
-        });
-    },
+export default {
+  components: { MainHeader },
+  asyncData(context) {
+    let client = context.app.apolloProvider.defaultClient;
+    return client.query({ query: getMainPage }).then(({ data }) => {
+      return {
+        ...data.stronaGlowna
+      };
+    });
   }
+};
 </script>
 
 <style lang="scss" scoped>
+.coach-container {
+  display: flex;
+  justify-content: center;
+}
 
-  // .instructions {
-  //   text-align: center;
-  //   h2 {
-  //     text-transform: uppercase;
-  //     color: color(textSecondary);
-  //     margin-bottom: 4rem;
-  //   }
-  //   article {
-  //     padding: 1rem 0;
-  //     span {
-  //       font-size: 60px;
-  //       color: color(primary);
-  //     }
-  //   }
-  // }
+.coaches__title,
+.mission__title,
+.clients__title {
+  text-align: center;
+  background-color: color(primary);
+  padding: 2rem 1rem;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  color: color(white);
+  margin: 0;
+  font-weight: 300;
+}
 
-  .coach-container {
-    display: flex;
-    justify-content: center;
+.mission {
+  text-align: center;
+  article {
+    padding: 1rem 0;
+    span {
+      font-size: 60px;
+      color: color(primary);
+    }
+  }
+}
+
+.clients__images {
+  display: flex;
+  flex-direction: column;
+}
+
+.clients__image {
+  padding: 10%;
+}
+
+@media (min-width: 768px) {
+  .clients__images {
+    flex-direction: row; 
+    flex-wrap: wrap; 
   }
 
-  .coaches__title,
-  .mission__title,
-  .clients__title {
-    text-align: center;
-    background-color: color(primary);
-    padding: 2rem 1rem;
-    color: white;
-    text-transform: uppercase;
-    text-align: center;
-    color: color(white);
-    margin: 0;
-    font-weight: 300;
+  .clients__image {
+    flex-basis: 50%;
   }
-  
-  .mission {
-    text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .landing-controls button {
+    font-size: 40px;
+  }
+
+  .mission-container,
+  .instructions-container {
+    flex-direction: row;
+    justify-content: space-between;
     article {
-      padding: 1rem 0;
-      span {
-        font-size: 60px;
-        color: color(primary);
-      }
+      width: 30%;
     }
   }
 
-  .clients {
-    article {
-      padding: 40px 1rem;
-      padding-bottom: 0;
-    }
+  .clients__image {
+    flex-basis: 25%;
+    padding: 5%;
   }
-
-  @media (min-width: 1024px) {
-
-    .landing-controls button {
-      font-size: 40px;
-    }
-
-    .mission-container, 
-    .instructions-container {
-      flex-direction: row;
-      justify-content: space-between;
-      article {
-        width: 30%;
-      }
-    }
-  }
+}
 </style>
