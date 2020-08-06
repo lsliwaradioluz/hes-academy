@@ -49,6 +49,6 @@
   .coach-text {
     font-size: 14px;
     margin: 0;
-    text-align: justify;
+    text-align: center;
   }
 </style>

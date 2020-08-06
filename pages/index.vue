@@ -32,13 +32,16 @@
             [768, 2],
             [1024, 3]
           ]"
+          :navigation-config="{
+            activeColor: '#00BDFF',
+          }"
         >
           <article
             class="coach-container"
             v-for="coach in coaches"
             :key="coach.id"
           >
-            <Coach :coach="coach"></Coach>
+            <Coach :coach="coach" />
           </article>
         </Carousel>
       </div>
@@ -149,8 +152,8 @@ export default {
 
 @media (min-width: 768px) {
   .clients__images {
-    flex-direction: row; 
-    flex-wrap: wrap; 
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .clients__image {
