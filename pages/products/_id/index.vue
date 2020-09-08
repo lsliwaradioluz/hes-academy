@@ -1,11 +1,11 @@
 <template>
-  <div class="product-page">
+  <div>
     <Header background="wysilek.jpg" highlighted>
       <template v-slot:header>Sklep</template>
     </Header>
-    <article class="main">
-      <Gallery :images="product.images" />
-      <section class="column">
+    <article class="product-page main">
+      <Gallery class="product-page__gallery" :images="product.images" />
+      <section class="product-page__details">
         <h2 class="mt0">{{ product.name }}</h2>
         <span class="row j-between">
           <h3>Cena:</h3>
@@ -33,7 +33,8 @@
           </div>  
         </Modal>
         <h3 class="mt2 mb1">Opis produktu</h3>
-        <p>{{ product.description }}</p>
+        <p v-if="product.description">{{ product.description }}</p>
+        <p v-else>Ten produkt nie ma jeszcze opisu.</p>
         <template v-if="product.exercises.length > 0">
           <h3 class="mt1 mb1">Z tym sprzętem wykonasz ćwiczenia:</h3>
           <ul>
@@ -111,6 +112,11 @@
 
 <style lang="scss" scoped>
 
+  .product-page__details {
+    display: flex;
+    flex-direction: column;
+  }
+
   .related-products {
     border-top: 1px solid color(texttertiary);
     padding-top: 1rem;
@@ -132,16 +138,18 @@
   }
 
   @media (min-width: 1024px) {
-    article {
+    .product-page {
       display: flex;
-      section:nth-child(1) {
-        padding-right: 2rem;
-        border-right: 1px solid color(texttertiary);
-      } 
+    }
+
+    .product-page__gallery {
+      padding-right: 2rem;
+      border-right: 1px solid color(texttertiary);
+    } 
       section:nth-child(2) {
         padding-left: 2rem;
+        flex-basis: 70%;
       } 
-    }
 
     .form {
       width: 50%;

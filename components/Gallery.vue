@@ -1,24 +1,21 @@
 <template>
-  <section class="gallery mb2">
+  <section class="gallery">
     <transition name="fade" mode="out-in">
-      <div 
-        class="main-image" 
-        :style="{ backgroundImage: `url('${images[current].url}')`}"
+      <img 
+        class="gallery__image" 
+        :src="images[current].url"
         :key="current">
-      </div>
     </transition>
-    <Carousel :pagination="false" :columns="[[1, 3]]">
-      <div 
-        class="thumb row a-center j-center"
+    <ul class="gallery__thumbs">
+      <li 
+        class="gallery__thumb"
         :class="{ active: current == index}"
+        :style="{ backgroundImage: `url('${image.url}')` }"
         v-for="(image, index) in images" 
-        :key="image.id">
-        <img
-          :src="image.url" 
-          :alt="`image-${image.id}`"
-          @click="current = index">
-      </div>
-    </Carousel>
+        :key="image.id"
+        @click="current = index">
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -40,15 +37,48 @@
 
 <style lang="scss" scoped>
 
-  .main-image {
-    height: 300px;
+  .gallery {
+    margin-bottom: 2rem;
+    flex-basis: 50%;
+    flex-shrink: 0;
+  }
+
+  .gallery__image {
+    width: 100%;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
   }
 
-  .thumb {
+  .gallery__thumbs {
+    display: flex;
+    width: 100%;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+      height: 10px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: color(primary);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .gallery__thumb {
+    height: 150px;
     cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    flex-basis: 30%;
+    flex-grow: 1;
+    flex-shrink: 0;
+    &:before {
+      display: none;
+    }
   }
 
   .active {
