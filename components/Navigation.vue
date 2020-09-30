@@ -36,7 +36,7 @@
       <div class="column a-end">
         <nuxt-link to="/articles">Blog</nuxt-link>
         <nuxt-link to="/exercises">Ćwiczenia</nuxt-link>
-        <!-- <nuxt-link to="/programs">Szkolenia</nuxt-link> -->
+        <nuxt-link to="/programs">Szkolenia</nuxt-link>
         <nuxt-link to="/products">Sklep</nuxt-link>
         <nuxt-link to="/personal">Trenuj z nami</nuxt-link>
       </div>
