@@ -83,20 +83,6 @@ export default {
   flex-wrap: wrap;
 }
 
-.coaches__title,
-.mission__title,
-.clients__title {
-  text-align: center;
-  background-color: color(primary);
-  padding: 2rem 1rem;
-  color: white;
-  text-transform: uppercase;
-  text-align: center;
-  color: color(white);
-  margin: 0;
-  font-weight: 300;
-}
-
 .mission {
   text-align: center;
   article {
@@ -121,6 +107,7 @@ export default {
   .clients__images {
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
   }
 
   .clients__image {
