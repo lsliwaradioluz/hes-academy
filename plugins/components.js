@@ -22,7 +22,6 @@ import ProductThumb from '~/components/ProductThumb';
 import Gallery from '~/components/Gallery';
 import CartItem from '~/components/CartItem';
 import ExerciseThumb from '~/components/ExerciseThumb';
-import SearchInput from '~/components/SearchInput';
 
 Vue.component('Navigation', Navigation);
 Vue.component('Program', Program);
@@ -47,7 +46,6 @@ Vue.component('ProductThumb', ProductThumb);
 Vue.component('Gallery', Gallery);
 Vue.component('CartItem', CartItem);
 Vue.component('ExerciseThumb', ExerciseThumb);
-Vue.component('SearchInput', SearchInput);
 
 
 

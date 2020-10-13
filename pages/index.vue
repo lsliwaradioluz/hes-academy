@@ -1,53 +1,19 @@
 <template>
   <div class="main-page">
-    <section class="landing">
-      <MainHeader :slides="landing" />
-    </section>
-    <!-- <section class="instructions main">
-      <h2>Zainwestuj w siebie!</h2>
-      <div class="instructions-container column">
-        <article>
-          <span class="flaticon-login"></span>
-          <h3 class="header--underlined">Załóż konto</h3>
-          <p class="mt0">Załóż konto za darmo, aby uzyskać dostęp do bazy ponad 100 ćwiczeń. Rejestracja stanowi niezbędny krok na drodze do uzyskania dostępu do naszych programów.</p>
-        </article>
-        <article>
-          <span class="flaticon-book"></span>
-          <h3 class="header--underlined">Znajdź swój program</h3>
-          <p class="mt0">Zapoznaj się z naszą bazą programów on-line i wybierz ten, który najbardziej odpowiada Twoim potrzebom. Pierwszy wykład każdego programu jest dostępny za darmo.</p>
-        </article>
-        <article>
-          <span class="flaticon-ebook"></span>
-          <h3 class="header--underlined">Korzystaj do woli</h3>
-          <p class="mt0">Wykup dożywotni dostęp do danego programu, aby odblokować pozostałe wykłady. Ciesz się nimi bez ograniczeń - również na urządzeniach mobilnych!</p>
-        </article>
-      </div>
-    </section> -->
+    <MainHeader :slides="landing" />
+    <Title
+      title="Hes academy to my"
+      caption="Jesteśmy trenerami z wieloletnim doświadczeniem i sprawdzonymi metodami. Trenujemy zarówno sportowców, jak i amatorów, pomagając im osiągnąć maksimum swojego potencjału."
+    >
+      <nuxt-link class="button-secondary" to="/personal"
+        >Zobacz, jak trenujemy</nuxt-link
+      >
+    </Title>
     <section class="coaches">
-      <h2 class="coaches__title">HES Academy to my</h2>
-      <div class="coaches__container main">
-        <Carousel
-          :columns="[
-            [1, 1],
-            [768, 2],
-            [1024, 3]
-          ]"
-          :navigation-config="{
-            activeColor: '#00BDFF',
-          }"
-        >
-          <article
-            class="coach-container"
-            v-for="coach in coaches"
-            :key="coach.id"
-          >
-            <Coach :coach="coach" />
-          </article>
-        </Carousel>
-      </div>
+      <Coach v-for="(coach, index) in coaches" :key="coach.id" :coach="coach" :index="index" :length="coaches.length" />
     </section>
     <section class="mission">
-      <h2 class="mission__title">Misja</h2>
+      <Title title="Misja" />
       <div class="mission-container main column">
         <article class="column a-center">
           <span class="flaticon-dumbbell"></span>
@@ -79,7 +45,7 @@
       </div>
     </section>
     <section class="clients">
-      <h2 class="clients__title">Zaufali nam</h2>
+      <Title title="Zaufali nam" />
       <article class="clients__images main">
         <div
           class="clients__image"
@@ -94,11 +60,12 @@
 </template>
 
 <script>
+import Title from "~/components/Main/Title";
 import MainHeader from "~/components/MainHeader";
 import getMainPage from "~/apollo/queries/getMainPage.gql";
 
 export default {
-  components: { MainHeader },
+  components: { MainHeader, Title },
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: getMainPage }).then(({ data }) => {
@@ -111,9 +78,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.coach-container {
+.coaches {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .coaches__title,
@@ -162,9 +129,6 @@ export default {
 }
 
 @media (min-width: 1024px) {
-  .landing-controls button {
-    font-size: 40px;
-  }
 
   .mission-container,
   .instructions-container {
