@@ -56,7 +56,9 @@ export default {
   },
   watch: {
     route() {
-      this.linksVisible = false
+      if (window.innerWidth < 1095) {
+        this.linksVisible = false;
+      }
     }
   },
   methods: {
@@ -68,11 +70,11 @@ export default {
       window.addEventListener("scroll", () => {
         this.scroll = window.scrollY;
       });
-    },
+    }
   },
   mounted() {
     this.linksVisible = window.innerWidth > 1095 ? true : false;
-    this.listenForScroll()
+    this.listenForScroll();
   }
 };
 </script>

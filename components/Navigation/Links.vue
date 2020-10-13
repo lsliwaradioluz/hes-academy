@@ -52,7 +52,7 @@ export default {
   a,
   button {
     padding: 0;
-    color: color(primary);
+    color: color(textprimary);
     font-size: 26px;
     text-transform: uppercase;
     font-weight: 100;
@@ -107,6 +107,7 @@ export default {
     a {
       margin: 0 1rem;
       font-size: 18px;
+      color: color(primary);
     }
   }
 }
