@@ -1,5 +1,5 @@
-query getAllArticles {
-  articles(sort: "createdAt:desc") {
+query getAllArticles($limit: Int) {
+  articles(sort: "createdAt:desc", limit: $limit) {
     id
     title
     createdAt

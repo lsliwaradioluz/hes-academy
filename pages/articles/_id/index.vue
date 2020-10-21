@@ -34,7 +34,7 @@
     async asyncData(context) {
       let client = context.app.apolloProvider.defaultClient;
       const article = await client.query({ query: getSingleArticle, variables: { id: context.route.params.id } });
-      const articles = await client.query({ query: getAllArticles, variables: { limit: 3 } });
+      const articles = await client.query({ query: getAllArticles, variables: { limit: 5 } });
       return {
         article: article.data.article, 
         articles: articles.data.articles, 
