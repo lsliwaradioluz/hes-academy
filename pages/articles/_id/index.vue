@@ -40,8 +40,19 @@ import getAllArticles from "~/apollo/queries/getAllArticles.gql";
 export default {
   head: {
     meta: [
-      { hid: "og:title", property: "og:title", content: this.article.title },
-      { hid: "og:image", property: "og:image", content: this.article.image.url }
+      // { hid: "og:title", property: "og:title", content: this.article.title },
+      // { hid: "og:image", property: "og:image", content: this.article.image.url }
+      {
+        hid: "og:title",
+        property: "og:title",
+        content: "Artykuł ze strony Hes Academy"
+      },
+      {
+        hid: "og:image",
+        property: "og:image",
+        content:
+          "https://images.unsplash.com/photo-1604680016749-9b7a7ed3dc04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+      }
     ]
   },
   async asyncData(context) {
