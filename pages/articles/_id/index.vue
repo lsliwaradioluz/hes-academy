@@ -38,28 +38,36 @@ import getSingleArticle from "~/apollo/queries/getSingleArticle.gql";
 import getAllArticles from "~/apollo/queries/getAllArticles.gql";
 
 export default {
-  head: {
-    meta: [
-      // { hid: "og:title", property: "og:title", content: this.article.title },
-      // { hid: "og:image", property: "og:image", content: this.article.image.url }
-      {
-        hid: "og:title",
-        property: "og:title",
-        content: "Artykuł ze strony Hes Academy"
-      },
-      {
-        hid: "og:description",
-        property: "og:description",
-        content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      },
-      {
-        hid: "og:image",
-        property: "og:image",
-        content:
-          "https://images.unsplash.com/photo-1604680016749-9b7a7ed3dc04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
-      }
-    ]
+  head() {
+    return {
+      meta: [
+        { hid: "og:title", property: "og:title", content: this.article.title },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: this.article.image.url
+        }
+        // {
+        //   hid: "og:title",
+        //   property: "og:title",
+        //   content: "Artykuł ze strony Hes Academy"
+        // },
+        // {
+
+        // {
+        //   hid: "og:image",
+        //   property: "og:image",
+        //   content:
+        //     "https://images.unsplash.com/photo-1604680016749-9b7a7ed3dc04?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+        // }
+      ]
+    };
   },
   async asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
