@@ -6,13 +6,16 @@
     </Header>
     <section class="p11">
       <article>
-        <p class="t-textsecondary fs-12">Dodano {{ article.createdAt | getDate }}</p>
+        <p class="t-textsecondary fs-12">
+          Dodano {{ article.createdAt | getDate }}
+        </p>
         <div class="article-tags row">
-          <nuxt-link 
-            class="article-tag" 
-            v-for="tag in article.tags" 
-            :key="tag.id" 
-            :to="{ path: '/articles', query: { tag: tag.name }}">
+          <nuxt-link
+            class="article-tag"
+            v-for="tag in article.tags"
+            :key="tag.id"
+            :to="{ path: '/articles', query: { tag: tag.name } }"
+          >
             {{ tag.name }}
           </nuxt-link>
         </div>
@@ -20,68 +23,84 @@
       </article>
       <article class="related-articles column">
         <h3>Przeczytaj także:</h3>
-        <ArticleThumb v-for="article in articles" :key="article.id" :article="article" />
+        <ArticleThumb
+          v-for="article in articles"
+          :key="article.id"
+          :article="article"
+        />
       </article>
     </section>
   </div>
 </template>
 
 <script>
-  import getSingleArticle from '~/apollo/queries/getSingleArticle.gql'; 
-  import getAllArticles from '~/apollo/queries/getAllArticles.gql'; 
-  
-  export default {
-    async asyncData(context) {
-      let client = context.app.apolloProvider.defaultClient;
-      const article = await client.query({ query: getSingleArticle, variables: { id: context.route.params.id } });
-      const articles = await client.query({ query: getAllArticles, variables: { limit: 5 } });
-      return {
-        article: article.data.article, 
-        articles: articles.data.articles, 
-      }
-    },
+import getSingleArticle from "~/apollo/queries/getSingleArticle.gql";
+import getAllArticles from "~/apollo/queries/getAllArticles.gql";
+
+export default {
+  head: {
+    meta: [
+      { hid: "og:title", property: "og:title", content: this.article.title },
+      { hid: "og:image", property: "og:image", content: this.article.image.url }
+    ]
+  },
+  async asyncData(context) {
+    let client = context.app.apolloProvider.defaultClient;
+    const article = await client.query({
+      query: getSingleArticle,
+      variables: { id: context.route.params.id }
+    });
+    const articles = await client.query({
+      query: getAllArticles,
+      variables: { limit: 5 }
+    });
+    return {
+      article: article.data.article,
+      articles: articles.data.articles
+    };
   }
+};
 </script>
 
 <style lang="scss" scoped>
-  .article-tags {
-    flex-wrap: wrap;
+.article-tags {
+  flex-wrap: wrap;
+}
+
+.content {
+  border-bottom: 1px solid color(texttertiary);
+}
+
+.related-articles {
+  padding-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  section {
+    padding: 4.5rem 10% !important;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    article {
+      &:nth-child(1) {
+        padding-right: 2rem;
+        flex-basis: 70%;
+        border-right: 1px solid color(texttertiary);
+      }
+      &:nth-child(2) {
+        padding-left: 2rem;
+        flex-basis: 30%;
+      }
+    }
   }
 
   .content {
-    border-bottom: 1px solid color(texttertiary);
+    border-bottom: none;
   }
 
   .related-articles {
-    padding-top: 1rem;
+    position: sticky;
+    top: 4rem;
   }
-
-  @media (min-width: 1024px) {
-    section {
-      padding: 4.5rem 10% !important;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      article {
-        &:nth-child(1) {
-          padding-right: 2rem;
-          flex-basis: 70%;
-          border-right: 1px solid color(texttertiary);
-        }
-        &:nth-child(2) {
-          padding-left: 2rem;
-          flex-basis: 30%;
-        }
-      }
-    }
-
-    .content {
-      border-bottom: none;
-    }
-
-    .related-articles {
-      position: sticky;
-      top: 4rem;
-    }
-  }
+}
 </style>
