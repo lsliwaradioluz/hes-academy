@@ -30,7 +30,7 @@
               Dostęp na urządzeniach mobilnych
             </li>
           </ul>
-          <ProgramSubscriptionPanel :program="program" :item-purchased="itemPurchased" />
+          <!-- <ProgramSubscriptionPanel :program="program" :item-purchased="itemPurchased" /> -->
         </article>
         <h2 class="mb05">Wykłady</h2>
         <Lesson 

@@ -2,7 +2,7 @@
   <div class="links">
     <nuxt-link to="/articles">Blog</nuxt-link>
     <nuxt-link to="/exercises">Ćwiczenia</nuxt-link>
-    <!-- <nuxt-link to="/programs">Szkolenia</nuxt-link> -->
+    <nuxt-link to="/programs">Szkolenia</nuxt-link>
     <nuxt-link to="/products">Sklep</nuxt-link>
     <nuxt-link to="/personal">Trenuj z nami</nuxt-link>
     <template v-if="user">
